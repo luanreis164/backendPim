@@ -1,9 +1,6 @@
 package com.hotelUnip.pim.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -26,6 +23,9 @@ public class Pessoa implements Serializable{
         private String telefone;
         private String rg;
         private Date dataNasc;
+
+        @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
+        private Reserva reserva;
 
         public Pessoa() {
         }
@@ -137,6 +137,14 @@ public class Pessoa implements Serializable{
 
         public String getCep() {
                 return cep;
+        }
+
+        public Reserva getReserva() {
+                return reserva;
+        }
+
+        public void setReserva(Reserva reserva) {
+                this.reserva = reserva;
         }
 
         public void setCep(String cep) {
