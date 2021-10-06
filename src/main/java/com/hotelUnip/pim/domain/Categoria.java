@@ -1,5 +1,7 @@
 package com.hotelUnip.pim.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class Categoria implements Serializable {
 
     private String nome;
     private Double precoDiaria;
+
 
     @OneToMany(mappedBy = "categoria")
     private List<Quarto> quartos = new ArrayList<>();

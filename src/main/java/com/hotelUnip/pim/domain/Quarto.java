@@ -1,5 +1,7 @@
 package com.hotelUnip.pim.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -14,6 +16,7 @@ public class Quarto implements Serializable {
     private Integer numero;
     private Integer andar;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
