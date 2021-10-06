@@ -22,19 +22,19 @@ public class Reserva implements Serializable{
 
 
     @JsonIgnore
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pessoa_id")
-    private Pessoa pessoa;
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
 
     public Reserva() {
     }
 
-    public Reserva(Integer id, Date dataChegada, Date dataReserva, Integer tempoEstadia, Pessoa pessoa) {
+    public Reserva(Integer id, Date dataChegada, Date dataReserva, Integer tempoEstadia, Cliente cliente) {
         this.id = id;
         this.dataChegada = dataChegada;
         this.dataReserva = dataReserva;
         this.tempoEstadia = tempoEstadia;
-        this.pessoa = pessoa;
+        this.cliente = cliente;
     }
 
     public Integer getId() {
@@ -69,12 +69,12 @@ public class Reserva implements Serializable{
         this.tempoEstadia = tempoEstadia;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
     @Override

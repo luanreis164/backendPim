@@ -6,13 +6,14 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class Pessoa implements Serializable{
+public abstract class Pessoa implements Serializable{
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Integer id;
 
         private String nome;
+        private String email;
         private String cpf;
         private String rua;
         private String bairro;
@@ -24,16 +25,15 @@ public class Pessoa implements Serializable{
         private String rg;
         private Date dataNasc;
 
-        @OneToOne(mappedBy = "pessoa", cascade = CascadeType.ALL)
-        private Reserva reserva;
 
         public Pessoa() {
         }
 
-        public Pessoa(Integer id, String nome, String cpf, String rua, String bairro, String numero, String cep,
+        public Pessoa(Integer id, String nome, String email , String cpf, String rua, String bairro, String numero, String cep,
                       String cidade, String estado, String telefone, String rg, Date dataNasc) {
                 this.id = id;
                 this.nome = nome;
+                this.email = email;
                 this.cpf = cpf;
                 this.rua = rua;
                 this.bairro = bairro;
@@ -139,16 +139,16 @@ public class Pessoa implements Serializable{
                 return cep;
         }
 
-        public Reserva getReserva() {
-                return reserva;
-        }
-
-        public void setReserva(Reserva reserva) {
-                this.reserva = reserva;
-        }
-
         public void setCep(String cep) {
                 this.cep = cep;
+        }
+
+        public String getEmail() {
+                return email;
+        }
+
+        public void setEmail(String email) {
+                this.email = email;
         }
 
         @Override

@@ -33,6 +33,9 @@ public class PimApplication implements CommandLineRunner {
 	@Autowired
 	private GerenteRepository gerenteRepository;
 
+	@Autowired
+	private ClienteRepository clienteRepository;
+
 
 
 
@@ -44,23 +47,22 @@ public class PimApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 
-		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-		Pessoa p1 = new Pessoa(null, "Luan", "48000547880", "Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
-				"Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 18:35:55"));
+		Cliente cli1 = new Cliente(null, "Luan","luanreis2202@gmail.com", "48000547880","Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
+				"Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 18:35"));
 
-		Pessoa p2 = new Pessoa(null, "Jao", "13354879977", "Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
-				"Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 13:30:20"));
+		Cliente cli2 = new Cliente(null, "Jao","exemplo@gmail.com","46666446486", "Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
+				"Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 13:30"));
 
-		Reserva reserva1 = new Reserva(null,sdf.parse("25/11/2021 11:37:20"),sdf.parse("22/12/2021 19:30:20"),35,p1);
-		Reserva reserva2 = new Reserva(null,sdf.parse("25/11/2021 21:44:20"),sdf.parse("22/12/2021 14:40:20"),35,p1);
+		clienteRepository.saveAll(Arrays.asList(cli1,cli2));
 
-		p1.setReserva(reserva1);
-		p2.setReserva(reserva2);
-		reserva1.setPessoa(p1);
-		reserva2.setPessoa(p2);
+		Reserva reserva1 = new Reserva(null,sdf.parse("25/11/2021 11:37"),sdf.parse("22/12/2021 19:30"),35,cli1);
+		Reserva reserva2 = new Reserva(null,sdf.parse("25/11/2021 21:44"),sdf.parse("22/12/2021 14:40"),35,cli2);
 
-		pessoaRepository.saveAll(Arrays.asList(p1,p2));
+		reserva1.setCliente(cli1);
+		reserva2.setCliente(cli2);
+
 		reservaRepository.saveAll(Arrays.asList(reserva1,reserva2));
 
 		Categoria cat1 = new Categoria(null,"Suite Royal 01",205.00);
@@ -72,16 +74,16 @@ public class PimApplication implements CommandLineRunner {
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		quartoRepository.saveAll(Arrays.asList(quarto1,quarto2));
 
-		Funcionario funcionario1 = new Funcionario(null,"Thalita","1554448877","Israel Rodrigues","Tude Bastos","131",
-				"11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 13:30:20"),"487D87A",
-				"655778-8",sdf.parse("22/04/2021 19:30:20"),"Atendente",1.7500
+		Funcionario funcionario1 = new Funcionario(null,"Thalita","exemplo@hotmail.com","1554448877","Israel Rodrigues","Tude Bastos","131",
+				"11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 13:30"),"487D87A",
+				"655778-8",sdf.parse("22/04/2021 19:30"),"Atendente",1.7500
 					);
 
 		funcionarioRepository.saveAll(Arrays.asList(funcionario1));
 
-		Gerente gerente1 = new Gerente(null,"Luan","480054788899","Josefina Bakhita","vila Sonia","527",
-				"11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 09:48:20"),"99F77841",
-				"6466774-8",sdf.parse("22/08/2019 19:30:20"),"Gerente",2.7500,350.00);
+		Gerente gerente1 = new Gerente(null,"Luan","luanreis2202@gmail.com","480054788899","Josefina Bakhita","vila Sonia","527",
+				"11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 09:48"),"99F77841",
+				"6466774-8",sdf.parse("22/08/2019 19:30"),"Gerente",2.7500,350.00);
 
 		gerenteRepository.saveAll(Arrays.asList(gerente1));
 
