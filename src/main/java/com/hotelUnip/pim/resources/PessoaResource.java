@@ -25,7 +25,7 @@ public class PessoaResource {
     }
     @GetMapping
     public ResponseEntity<List<Pessoa>> findAll(){
-        List<Pessoa> lista = service.finAll();
+        List<Pessoa> lista = service.findAll();
         return ResponseEntity.ok().body(lista);
 
     }

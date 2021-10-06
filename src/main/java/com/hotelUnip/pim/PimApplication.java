@@ -1,8 +1,12 @@
 package com.hotelUnip.pim;
 
+import com.hotelUnip.pim.domain.Categoria;
 import com.hotelUnip.pim.domain.Pessoa;
+import com.hotelUnip.pim.domain.Quarto;
 import com.hotelUnip.pim.domain.Reserva;
+import com.hotelUnip.pim.repositories.CategoriaRepository;
 import com.hotelUnip.pim.repositories.PessoaRepository;
+import com.hotelUnip.pim.repositories.QuartoRepository;
 import com.hotelUnip.pim.repositories.ReservaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +26,14 @@ public class PimApplication implements CommandLineRunner {
 
 	@Autowired
 	private ReservaRepository reservaRepository;
+
+	@Autowired
+	private QuartoRepository quartoRepository;
+
+	@Autowired
+	private CategoriaRepository categoriaRepository;
+
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(PimApplication.class, args);
@@ -49,6 +61,16 @@ public class PimApplication implements CommandLineRunner {
 
 		pessoaRepository.saveAll(Arrays.asList(p1,p2));
 		reservaRepository.saveAll(Arrays.asList(reserva1,reserva2));
+
+		Categoria cat1 = new Categoria(null,"Suite Royal 01",205.00);
+		Categoria cat2 = new Categoria(null,"Suite Royal Deluxe 01",260.00);
+
+		Quarto quarto1 = new Quarto(null,11,1,cat1);
+		Quarto quarto2 = new Quarto(null,12,1,cat2);
+
+		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
+		quartoRepository.saveAll(Arrays.asList(quarto1,quarto2));
+
 
 	}
 }
