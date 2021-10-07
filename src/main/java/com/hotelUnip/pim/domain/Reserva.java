@@ -26,6 +26,11 @@ public class Reserva implements Serializable{
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
+    @JsonIgnore
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "hospedagem_id")
+    private Hospedagem hospedagem;
+
     public Reserva() {
     }
 

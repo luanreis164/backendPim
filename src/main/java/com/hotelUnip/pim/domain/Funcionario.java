@@ -1,9 +1,14 @@
 package com.hotelUnip.pim.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Funcionario extends Pessoa {
@@ -13,6 +18,10 @@ public class Funcionario extends Pessoa {
     private Date dataAdmissao;
     private String cargo;
     private Double salario;
+
+    @JsonBackReference
+    @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL)
+    private List<Hospedagem> hospedagens =  new ArrayList<>();
 
     public Funcionario() {
     }
@@ -68,4 +77,11 @@ public class Funcionario extends Pessoa {
         this.salario = salario;
     }
 
+    public List<Hospedagem> getHospedagens() {
+        return hospedagens;
+    }
+
+    public void setHospedagens(List<Hospedagem> hospedagens) {
+        this.hospedagens = hospedagens;
+    }
 }
