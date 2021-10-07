@@ -1,17 +1,22 @@
 package com.hotelUnip.pim.domain;
 
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
 public class Cliente extends Pessoa {
 
 
+    @JsonBackReference
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
     private Reserva reserva;
+
+
+
+    // CONSTRUTORES ---------------------
 
     public Cliente() {
     }
@@ -20,6 +25,8 @@ public class Cliente extends Pessoa {
                    String estado, String telefone, String rg, Date dataNasc) {
         super(id, nome, email, cpf, rua, bairro, numero, cep, cidade, estado, telefone, rg, dataNasc);
     }
+
+    // GETTER / SETTERS
 
     public Reserva getReserva() {
         return reserva;

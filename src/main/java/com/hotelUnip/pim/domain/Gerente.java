@@ -9,6 +9,8 @@ public class Gerente extends Funcionario{
 
     private Double bonificacao;
 
+    // CONSTRUTORES ---------------------
+
     public Gerente() {
     }
 
@@ -18,6 +20,9 @@ public class Gerente extends Funcionario{
         super(id, nome,email, cpf, rua, bairro, numero, cep, cidade, estado, telefone, rg, dataNasc, matricula, ctps, dataAdmissao, cargo, salario);
         this.bonificacao = bonificacao;
     }
+
+    // GETTER / SETTERS
+
 
     public Double getBonificacao() {
         return bonificacao;

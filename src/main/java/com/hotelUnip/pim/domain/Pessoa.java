@@ -26,6 +26,8 @@ public abstract class Pessoa implements Serializable{
         private Date dataNasc;
 
 
+        // CONSTRUTORES ---------------------
+
         public Pessoa() {
         }
 
@@ -45,6 +47,8 @@ public abstract class Pessoa implements Serializable{
                 this.rg = rg;
                 this.dataNasc = dataNasc;
         }
+
+        // GETTER / SETTERS
 
         public Integer getId() {
                 return id;
@@ -150,6 +154,8 @@ public abstract class Pessoa implements Serializable{
         public void setEmail(String email) {
                 this.email = email;
         }
+
+        // HASHCODE & EQUALS
 
         @Override
         public boolean equals(Object o) {

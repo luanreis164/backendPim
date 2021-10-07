@@ -1,6 +1,8 @@
 package com.hotelUnip.pim.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,9 +21,11 @@ public class Categoria implements Serializable {
     private String nome;
     private Double precoDiaria;
 
-
+    @JsonManagedReference
     @OneToMany(mappedBy = "categoria")
     private List<Quarto> quartos = new ArrayList<>();
+
+    // CONSTRUTORES ---------------------
 
     public Categoria() {
     }
@@ -31,6 +35,8 @@ public class Categoria implements Serializable {
         this.nome = nome;
         this.precoDiaria = precoDiaria;
     }
+
+    // GETTER / SETTERS --------------------------------
 
     public Integer getId() {
         return id;
@@ -64,6 +70,7 @@ public class Categoria implements Serializable {
         this.quartos = quartos;
     }
 
+    // HASHCODE EQUALS --------------
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

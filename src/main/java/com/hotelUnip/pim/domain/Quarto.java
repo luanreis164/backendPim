@@ -1,6 +1,8 @@
 package com.hotelUnip.pim.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,10 +18,18 @@ public class Quarto implements Serializable {
     private Integer numero;
     private Integer andar;
 
-    @JsonIgnore
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
+
+    @OneToOne(mappedBy = "quarto")
+    @JoinColumn(name = "hospedagem_id")
+    @JsonBackReference
+    private Hospedagem hospedagem;
+
+
+    // CONSTRUTORES ---------------------
 
     public Quarto() {
     }
@@ -30,6 +40,8 @@ public class Quarto implements Serializable {
         this.andar = andar;
         this.categoria = categoria;
     }
+
+    // GETTER / SETTERS --------------------------------
 
     public Integer getId() {
         return id;
@@ -63,6 +75,7 @@ public class Quarto implements Serializable {
         this.categoria = categoria;
     }
 
+    // HASHCODE & EQUALS --------------------------------
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

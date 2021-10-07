@@ -1,7 +1,9 @@
 package com.hotelUnip.pim.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -21,15 +23,23 @@ public class Reserva implements Serializable{
     private Integer tempoEstadia;
 
 
-    @JsonIgnore
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @JsonIgnore
+    @JsonBackReference
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "hospedagem_id")
     private Hospedagem hospedagem;
+
+    @JsonManagedReference
+    @OneToOne(mappedBy = "reserva")
+    private Pagamento pagamento;
+
+
+
+    // CONSTRUTORES --------------------------------
 
     public Reserva() {
     }
@@ -41,6 +51,8 @@ public class Reserva implements Serializable{
         this.tempoEstadia = tempoEstadia;
         this.cliente = cliente;
     }
+
+    // GETTER / SETTERS --------------------------------
 
     public Integer getId() {
         return id;
@@ -82,6 +94,23 @@ public class Reserva implements Serializable{
         this.cliente = cliente;
     }
 
+    public Hospedagem getHospedagem() {
+        return hospedagem;
+    }
+
+    public void setHospedagem(Hospedagem hospedagem) {
+        this.hospedagem = hospedagem;
+    }
+
+    public Pagamento getPagamento() {
+        return pagamento;
+    }
+
+    public void setPagamento(Pagamento pagamento) {
+        this.pagamento = pagamento;
+    }
+
+    // HASHCODE & EQUALS --------------------------------
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

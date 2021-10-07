@@ -1,6 +1,7 @@
 package com.hotelUnip.pim;
 
 import com.hotelUnip.pim.domain.*;
+import com.hotelUnip.pim.domain.enums.EstadoPagamento;;
 import com.hotelUnip.pim.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -39,6 +40,10 @@ public class PimApplication implements CommandLineRunner {
 	@Autowired
 	private HospedagemRepository hospedagemRepository;
 
+	@Autowired
+	private PagamentoRepository pagamentoRepository;
+
+
 
 
 
@@ -63,8 +68,6 @@ public class PimApplication implements CommandLineRunner {
 		Reserva reserva1 = new Reserva(null,sdf.parse("25/11/2021 11:37"),sdf.parse("22/12/2021 19:30"),35,cli1);
 		Reserva reserva2 = new Reserva(null,sdf.parse("25/11/2021 21:44"),sdf.parse("22/12/2021 14:40"),35,cli2);
 
-		reserva1.setCliente(cli1);
-		reserva2.setCliente(cli2);
 
 		reservaRepository.saveAll(Arrays.asList(reserva1,reserva2));
 
@@ -73,14 +76,15 @@ public class PimApplication implements CommandLineRunner {
 
 		Quarto quarto1 = new Quarto(null,11,1,cat1);
 		Quarto quarto2 = new Quarto(null,12,1,cat2);
+		quarto1.setCategoria(cat1);
+		quarto2.setCategoria(cat2);
 
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		quartoRepository.saveAll(Arrays.asList(quarto1,quarto2));
 
 		Funcionario funcionario1 = new Funcionario(null,"Thalita","exemplo@hotmail.com","1554448877","Israel Rodrigues","Tude Bastos","131",
 				"11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 13:30"),"487D87A",
-				"655778-8",sdf.parse("22/04/2021 19:30"),"Atendente",1.7500
-					);
+				"655778-8",sdf.parse("22/04/2021 19:30"),"Atendente",1.7500);
 
 		funcionarioRepository.saveAll(Arrays.asList(funcionario1));
 
@@ -90,8 +94,19 @@ public class PimApplication implements CommandLineRunner {
 
 		gerenteRepository.saveAll(Arrays.asList(gerente1));
 
-		Hospedagem hospedagem1 = new Hospedagem(null,sdf.parse("21/10/2021 12:45"),sdf.parse("22/10/2021 18:45"),1.750,funcionario1,reserva1);
+		Hospedagem hospedagem1 = new Hospedagem(null,sdf.parse("21/10/2021 12:45"),sdf.parse("22/10/2021 18:45"),1.750,funcionario1,reserva1,quarto1);
+		funcionario1.setHospedagens(Arrays.asList(hospedagem1));
+		reserva1.setHospedagem(hospedagem1);
 
+		reservaRepository.save(reserva1);
 		hospedagemRepository.saveAll(Arrays.asList(hospedagem1));
+
+		Pagamento pgto1 = new PagamentoComCartao(reserva1.getId(),EstadoPagamento.PENDENTE,reserva1,3);
+		reserva1.setPagamento(pgto1);
+
+		pagamentoRepository.saveAll(Arrays.asList(pgto1));
+
+
+
 	}
 }

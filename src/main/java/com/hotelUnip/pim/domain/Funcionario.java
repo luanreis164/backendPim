@@ -23,6 +23,8 @@ public class Funcionario extends Pessoa {
     @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL)
     private List<Hospedagem> hospedagens =  new ArrayList<>();
 
+    // CONSTRUTORES ---------------------
+
     public Funcionario() {
     }
 
@@ -36,6 +38,8 @@ public class Funcionario extends Pessoa {
         this.cargo = cargo;
         this.salario = salario;
     }
+
+    // GETTER / SETTERS
 
     public String getMatricula() {
         return matricula;

@@ -6,11 +6,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
 
 @Entity
-public class Hospedagem {
+public class Hospedagem implements Serializable {
 
 
     @Id
@@ -18,7 +19,7 @@ public class Hospedagem {
     private Integer id;
 
     private Date checkin;
-    private Date chckout;
+    private Date checkout;
     private Double valor;
 
     @JsonManagedReference
@@ -26,20 +27,36 @@ public class Hospedagem {
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "reserva_id")
     private Reserva reserva;
+
+    @JsonManagedReference
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "quarto_id")
+    private Quarto quarto;
+
+
+    // CONSTRUTORES ---------------------
 
     public Hospedagem() {
     }
 
-    public Hospedagem(Integer id, Date checkin, Date chckout, Double valor, Funcionario funcionario,Reserva reserva) {
+    public Hospedagem(Integer id, Date checkin, Date checkout, Double valor,
+                      Funcionario funcionario,Reserva reserva,Quarto quarto) {
         this.id = id;
         this.checkin = checkin;
-        this.chckout = chckout;
+        this.checkout = checkout;
         this.valor = valor;
         this.funcionario = funcionario;
         this.reserva = reserva;
+        this.quarto = quarto;
+
+
     }
+
+    // GETTER / SETTERS --------------------------------
 
     public Integer getId() {
         return id;
@@ -57,12 +74,12 @@ public class Hospedagem {
         this.checkin = checkin;
     }
 
-    public Date getChckout() {
-        return chckout;
+    public Date getCheckout() {
+        return checkout;
     }
 
-    public void setChckout(Date chckout) {
-        this.chckout = chckout;
+    public void setCheckout(Date chckout) {
+        this.checkout = checkout;
     }
 
     public Double getValor() {
@@ -81,6 +98,24 @@ public class Hospedagem {
         this.funcionario = funcionario;
     }
 
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
+    }
+
+    public Quarto getQuarto() {
+        return quarto;
+    }
+
+    public void setQuarto(Quarto quarto) {
+        this.quarto = quarto;
+    }
+
+
+    // HASHCODE & EQUALS -----------------------
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,11 +129,4 @@ public class Hospedagem {
         return Objects.hash(id);
     }
 
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
-    }
 }
