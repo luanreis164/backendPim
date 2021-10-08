@@ -1,5 +1,7 @@
 package com.hotelUnip.pim.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -23,6 +25,8 @@ public abstract class Pessoa implements Serializable{
         private String estado;
         private String telefone;
         private String rg;
+
+        @JsonFormat(pattern = "dd/MM/yyyy")
         private Date dataNasc;
 
 

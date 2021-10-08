@@ -98,7 +98,7 @@ public class PimApplication implements CommandLineRunner {
 		funcionario1.setHospedagens(Arrays.asList(hospedagem1));
 		reserva1.setHospedagem(hospedagem1);
 
-		reservaRepository.save(reserva1);
+
 		hospedagemRepository.saveAll(Arrays.asList(hospedagem1));
 
 		Pagamento pgto1 = new PagamentoComCartao(reserva1.getId(),EstadoPagamento.PENDENTE,reserva1,3);

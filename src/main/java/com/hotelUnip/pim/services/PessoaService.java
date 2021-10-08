@@ -21,8 +21,8 @@ public class PessoaService {
                 "Pessoa não encontrada! Id: " + id + ",Tipo: " + Pessoa.class.getName()));
     }
 
-    public List<?> findAll(){
-      List<?> list = repo.findAll();
+    public List<Pessoa> findAll(){
+      List<Pessoa> list = repo.findAll();
       return list;
 
     }

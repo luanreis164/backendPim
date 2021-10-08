@@ -21,8 +21,8 @@ public class PessoaResource {
         return ResponseEntity.ok().body(obj);
     }
     @GetMapping
-    public ResponseEntity<List<?>> findAll(){
-        List<?> lista = service.findAll();
+    public ResponseEntity<List<Pessoa>> findAll(){
+        List<Pessoa> lista = service.findAll();
         return ResponseEntity.ok().body(lista);
 
     }
