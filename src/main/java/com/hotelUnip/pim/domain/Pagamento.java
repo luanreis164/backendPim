@@ -19,7 +19,7 @@ public abstract class Pagamento implements Serializable {
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "reserva_id")
     @MapsId
-    @JsonManagedReference
+    @JsonBackReference
     private Reserva reserva;
 
     public Pagamento() {

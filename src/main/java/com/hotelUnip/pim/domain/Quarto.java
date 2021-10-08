@@ -25,7 +25,6 @@ public class Quarto implements Serializable {
 
     @OneToOne(mappedBy = "quarto")
     @JoinColumn(name = "hospedagem_id")
-    @JsonBackReference
     private Hospedagem hospedagem;
 
 
