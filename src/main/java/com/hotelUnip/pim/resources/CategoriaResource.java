@@ -1,6 +1,7 @@
 package com.hotelUnip.pim.resources;
 
 import com.hotelUnip.pim.domain.Categoria;
+import com.hotelUnip.pim.dto.CategoriaDTO;
 import com.hotelUnip.pim.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/categorias")
@@ -24,9 +26,10 @@ public class CategoriaResource {
     }
 
     @GetMapping
-    public ResponseEntity<List<Categoria>> findAll(){
+    public ResponseEntity<List<CategoriaDTO>> findAll(){
         List<Categoria> lista = service.findAll();
-        return ResponseEntity.ok().body(lista);
+        List<CategoriaDTO> listaDto = lista.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+        return ResponseEntity.ok().body(listaDto);
     }
 
     @PostMapping
