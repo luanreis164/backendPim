@@ -3,10 +3,11 @@ package com.hotelUnip.pim.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
-import java.text.SimpleDateFormat;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,7 +24,7 @@ public class Funcionario extends Pessoa {
     private String cargo;
     private Double salario;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Hospedagem> hospedagens =  new ArrayList<>();
 

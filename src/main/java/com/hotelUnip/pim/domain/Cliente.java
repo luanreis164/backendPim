@@ -2,16 +2,18 @@ package com.hotelUnip.pim.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import java.util.Date;
 
 @Entity
 public class Cliente extends Pessoa {
 
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
     private Reserva reserva;
 

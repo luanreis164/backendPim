@@ -76,6 +76,7 @@ public class PimApplication implements CommandLineRunner {
 
 		Quarto quarto1 = new Quarto(null,11,1,cat1);
 		Quarto quarto2 = new Quarto(null,12,1,cat2);
+
 		quarto1.setCategoria(cat1);
 		quarto2.setCategoria(cat2);
 

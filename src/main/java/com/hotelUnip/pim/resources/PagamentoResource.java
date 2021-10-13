@@ -19,7 +19,7 @@ public class PagamentoResource {
     private PagamentoService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> find(@PathVariable Integer id){
+    public ResponseEntity<Pagamento> find(@PathVariable Integer id){
         Pagamento obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }

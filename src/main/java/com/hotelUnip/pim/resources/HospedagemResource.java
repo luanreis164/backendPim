@@ -19,7 +19,7 @@ public class HospedagemResource {
     private HospedagemService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> find(@PathVariable Integer id){
+    public ResponseEntity<Hospedagem> find(@PathVariable Integer id){
         Hospedagem obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }

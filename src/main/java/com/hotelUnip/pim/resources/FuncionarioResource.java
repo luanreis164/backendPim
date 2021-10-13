@@ -1,5 +1,6 @@
 package com.hotelUnip.pim.resources;
 
+import com.hotelUnip.pim.domain.Cliente;
 import com.hotelUnip.pim.domain.Funcionario;
 import com.hotelUnip.pim.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class FuncionarioResource {
     private FuncionarioService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> find(@PathVariable Integer id){
+    public ResponseEntity<Funcionario> find(@PathVariable Integer id){
         Funcionario obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }

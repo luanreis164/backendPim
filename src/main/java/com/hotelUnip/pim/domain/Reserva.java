@@ -7,7 +7,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Objects;
 
@@ -23,17 +22,17 @@ public class Reserva implements Serializable{
     private Integer tempoEstadia;
 
 
-    @JsonManagedReference
+
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
-    @JsonBackReference
+    @JsonIgnore
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "hospedagem_id")
     private Hospedagem hospedagem;
 
-    @JsonManagedReference
+
     @OneToOne(mappedBy = "reserva")
     private Pagamento pagamento;
 

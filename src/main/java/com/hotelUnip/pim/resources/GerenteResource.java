@@ -1,5 +1,6 @@
 package com.hotelUnip.pim.resources;
 
+import com.hotelUnip.pim.domain.Funcionario;
 import com.hotelUnip.pim.domain.Gerente;
 import com.hotelUnip.pim.services.GerenteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class GerenteResource {
     private GerenteService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<?> find(@PathVariable Integer id){
+    public ResponseEntity<Gerente> find(@PathVariable Integer id){
         Gerente obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
