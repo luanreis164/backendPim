@@ -1,6 +1,7 @@
 package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.Categoria;
+import com.hotelUnip.pim.dto.CategoriaDTO;
 import com.hotelUnip.pim.repositories.CategoriaRepository;
 import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
 import com.hotelUnip.pim.services.exceptions.ObjectNotFoundException;
@@ -58,5 +59,7 @@ public class CategoriaService {
         return repo.findAll(pageRequest);
     }
 
-
+    public Categoria fromDto(CategoriaDTO objDto){
+        return new Categoria(objDto.getId(), objDto.getNome(),objDto.getPrecoDiaria());
+    }
 }

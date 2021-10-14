@@ -1,7 +1,8 @@
 package com.hotelUnip.pim.resources;
 
-import com.hotelUnip.pim.domain.Pagamento;
-import com.hotelUnip.pim.services.PagamentoService;
+import com.hotelUnip.pim.domain.Funcionario;
+import com.hotelUnip.pim.domain.Gerente;
+import com.hotelUnip.pim.services.GerenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,23 +13,24 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/pagamentos")
-public class PagamentoResource {
+@RequestMapping(value = "/gerentes")
+public class GerenteController {
 
     @Autowired
-    private PagamentoService service;
+    private GerenteService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Pagamento> find(@PathVariable Integer id){
-        Pagamento obj = service.find(id);
+    public ResponseEntity<Gerente> find(@PathVariable Integer id){
+        Gerente obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
     @GetMapping
-    public ResponseEntity<List<Pagamento>> findAll(){
-        List<Pagamento> lista = service.findAll();
+    public ResponseEntity<List<Gerente>> findAll(){
+        List<Gerente> lista = service.findAll();
         return ResponseEntity.ok().body(lista);
 
     }
+
 
 
 }

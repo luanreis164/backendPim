@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/pessoas")
-public class PessoaResource {
+public class PessoaController {
 
     @Autowired
     private PessoaService service;

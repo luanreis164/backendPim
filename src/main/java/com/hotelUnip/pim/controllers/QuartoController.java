@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/quartos")
-public class QuartoResource {
+public class QuartoController {
 
     @Autowired
     private QuartoService service;

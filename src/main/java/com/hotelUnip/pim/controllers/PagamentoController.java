@@ -1,7 +1,8 @@
 package com.hotelUnip.pim.resources;
 
-import com.hotelUnip.pim.domain.Reserva;
-import com.hotelUnip.pim.services.ReservaService;
+import com.hotelUnip.pim.domain.Pagamento;
+import com.hotelUnip.pim.services.PagamentoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,27 +12,23 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/reservas")
-public class ReservaResource {
+@RequestMapping(value = "/pagamentos")
+public class PagamentoController {
 
-    private ReservaService service;
-
-    private ReservaResource(ReservaService reservaService){
-        this.service = reservaService;
-    }
+    @Autowired
+    private PagamentoService service;
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Reserva> find(@PathVariable Integer id){
-        Reserva obj = service.find(id);
+    public ResponseEntity<Pagamento> find(@PathVariable Integer id){
+        Pagamento obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
     @GetMapping
-    public ResponseEntity<List<Reserva>> findAll(){
-        List<Reserva> lista = service.findAll();
+    public ResponseEntity<List<Pagamento>> findAll(){
+        List<Pagamento> lista = service.findAll();
         return ResponseEntity.ok().body(lista);
 
     }
-
 
 
 }
