@@ -1,4 +1,4 @@
-package com.hotelUnip.pim.resources.exceptions;
+package com.hotelUnip.pim.controllers.exceptions;
 
 import java.io.Serializable;
 
