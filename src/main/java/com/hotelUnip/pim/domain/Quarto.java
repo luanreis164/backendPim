@@ -23,7 +23,7 @@ public class Quarto implements Serializable {
     private Categoria categoria;
 
     @OneToOne(mappedBy = "quarto")
-   @JsonIgnore
+    @JsonIgnore
     @JoinColumn(name = "hospedagem_id")
     private Hospedagem hospedagem;
 
@@ -41,6 +41,7 @@ public class Quarto implements Serializable {
         this.andar = andar;
         this.categoria = categoria;
     }
+
 
     // GETTER / SETTERS --------------------------------
 

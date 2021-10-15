@@ -2,26 +2,31 @@ package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.Categoria;
 import com.hotelUnip.pim.domain.Quarto;
+import com.hotelUnip.pim.dto.QuartoDTO;
+import com.hotelUnip.pim.repositories.CategoriaRepository;
 import com.hotelUnip.pim.repositories.QuartoRepository;
+import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
 import com.hotelUnip.pim.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
-import java.util.Base64;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import static org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder.encode;
 
 @Service
 public class QuartoService {
 
     @Autowired
     private QuartoRepository repo;
+
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
 
     public Quarto find(Integer id){
         Optional<Quarto> obj = repo.findById(id);
@@ -34,7 +39,48 @@ public class QuartoService {
       return list;
 
     }
+    @Transactional
+    public Quarto insert(Quarto obj){
+        obj.setId(null);
+        return repo.save(obj);
+    }
 
+    public Quarto update(Quarto obj){
+        Quarto newObj = find(obj.getId());
+        updateData(newObj,obj);
+        return repo.save(newObj);
+    }
+
+    public void delete(Integer id){
+        find(id);
+        try {
+            repo.deleteById(id);
+
+        }
+        catch (DataIntegrityViolationException e ){
+            throw new DataIntegrityException("Não é possivel excluir uma Quarto que contém quartos!");
+        }
+
+    }
+
+    public Page<Quarto> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
+        PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction),orderBy);
+        return repo.findAll(pageRequest);
+    }
+
+
+    public Quarto fromDto(QuartoDTO objDto){
+        Categoria categoria =  categoriaRepository.getById(objDto.getCategoria());
+        Quarto quarto = new Quarto(objDto.getId(), objDto.getNumero(),objDto.getAndar(), categoria);
+        return quarto;
+    }
+
+    private void updateData(Quarto newObj, Quarto obj){
+        newObj.setNumero(obj.getNumero());
+        newObj.setAndar(obj.getAndar());
+        newObj.setCategoria(obj.getCategoria());
+
+    }
 
 
 }

@@ -1,5 +1,6 @@
 package com.hotelUnip.pim.services;
 
+import com.hotelUnip.pim.domain.Categoria;
 import com.hotelUnip.pim.domain.Cliente;
 import com.hotelUnip.pim.dto.ClienteDTO;
 import com.hotelUnip.pim.repositories.ClienteRepository;
@@ -32,6 +33,13 @@ public class ClienteService {
       return list;
 
     }
+
+    public Cliente insert(Cliente obj){
+        obj.setId(null);
+        return repo.save(obj);
+    }
+
+
 
     public Cliente update(Cliente obj){
         Cliente newObj = find(obj.getId());

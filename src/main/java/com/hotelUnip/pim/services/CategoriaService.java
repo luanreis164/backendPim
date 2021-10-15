@@ -64,6 +64,7 @@ public class CategoriaService {
     public Categoria fromDto(CategoriaDTO objDto){
         return new Categoria(objDto.getId(), objDto.getNome(),objDto.getPrecoDiaria());
     }
+
     private void updateData(Categoria newObj, Categoria obj){
         newObj.setNome(obj.getNome());
         newObj.setPrecoDiaria(obj.getPrecoDiaria());
