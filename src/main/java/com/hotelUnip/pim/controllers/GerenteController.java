@@ -1,6 +1,4 @@
-package com.hotelUnip.pim.resources;
-
-import com.hotelUnip.pim.domain.Funcionario;
+package com.hotelUnip.pim.controllers;
 import com.hotelUnip.pim.domain.Gerente;
 import com.hotelUnip.pim.services.GerenteService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,4 @@
-package com.hotelUnip.pim.resources;
+package com.hotelUnip.pim.controllers;
 
 import com.hotelUnip.pim.domain.Pagamento;
 import com.hotelUnip.pim.services.PagamentoService;

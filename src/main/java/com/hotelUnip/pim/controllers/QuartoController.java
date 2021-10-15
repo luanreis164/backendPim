@@ -1,6 +1,4 @@
-package com.hotelUnip.pim.resources;
-
-import com.hotelUnip.pim.domain.Categoria;
+package com.hotelUnip.pim.controllers;
 import com.hotelUnip.pim.domain.Quarto;
 import com.hotelUnip.pim.services.QuartoService;
 import org.springframework.beans.factory.annotation.Autowired;
