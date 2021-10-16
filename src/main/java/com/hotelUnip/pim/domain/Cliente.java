@@ -13,7 +13,7 @@ import java.util.Date;
 public class Cliente extends Pessoa {
 
 
-    @JsonIgnore
+    @JsonBackReference
     @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
     private Reserva reserva;
 

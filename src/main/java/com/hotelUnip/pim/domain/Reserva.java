@@ -23,6 +23,7 @@ public class Reserva implements Serializable{
 
 
 
+    @JsonManagedReference
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;

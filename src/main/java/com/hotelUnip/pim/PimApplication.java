@@ -60,7 +60,7 @@ public class PimApplication implements CommandLineRunner {
 		Cliente cli1 = new Cliente(null, "Luan","luanreis2202@gmail.com", "48000547880","Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
 				"Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 18:35"));
 
-		Cliente cli2 = new Cliente(null, "Jao","exemplo@gmail.com","46666446486", "Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
+		Cliente cli2 = new Cliente(null, "Jao","exemplo@gmail.com","59795386077", "Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
 				"Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 13:30"));
 
 		clienteRepository.saveAll(Arrays.asList(cli1,cli2));
@@ -83,13 +83,13 @@ public class PimApplication implements CommandLineRunner {
 		categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
 		quartoRepository.saveAll(Arrays.asList(quarto1,quarto2));
 
-		Funcionario funcionario1 = new Funcionario(null,"Thalita","exemplo@hotmail.com","1554448877","Israel Rodrigues","Tude Bastos","131",
+		Funcionario funcionario1 = new Funcionario(null,"Thalita","ca@gmail.com","1554448877","Israel Rodrigues","Tude Bastos","131",
 				"11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 13:30"),"487D87A",
 				"655778-8",sdf.parse("22/04/2021 19:30"),"Atendente",1.7500);
 
 		funcionarioRepository.saveAll(Arrays.asList(funcionario1));
 
-		Gerente gerente1 = new Gerente(null,"Luan","luanreis2202@gmail.com","480054788899","Josefina Bakhita","vila Sonia","527",
+		Gerente gerente1 = new Gerente(null,"Luan","luanreis112@gmail.com","480054788899","Josefina Bakhita","vila Sonia","527",
 				"11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 09:48"),"99F77841",
 				"6466774-8",sdf.parse("22/08/2019 19:30"),"Gerente",2.7500,350.00);
 

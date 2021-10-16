@@ -2,6 +2,7 @@ package com.hotelUnip.pim.controllers;
 
 import com.hotelUnip.pim.domain.Cliente;
 import com.hotelUnip.pim.dto.ClienteDTO;
+import com.hotelUnip.pim.dto.ClienteNewDTO;
 import com.hotelUnip.pim.services.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -62,7 +63,7 @@ public class ClienteController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert( @Valid @RequestBody ClienteDTO objDto){
+    public ResponseEntity<Void> insert(@Valid @RequestBody ClienteNewDTO objDto){
         Cliente obj = service.fromDto(objDto);
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()

@@ -3,6 +3,7 @@ package com.hotelUnip.pim.services;
 import com.hotelUnip.pim.domain.Categoria;
 import com.hotelUnip.pim.domain.Cliente;
 import com.hotelUnip.pim.dto.ClienteDTO;
+import com.hotelUnip.pim.dto.ClienteNewDTO;
 import com.hotelUnip.pim.repositories.ClienteRepository;
 import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
 import com.hotelUnip.pim.services.exceptions.ObjectNotFoundException;
@@ -36,7 +37,11 @@ public class ClienteService {
 
     public Cliente insert(Cliente obj){
         obj.setId(null);
-        return repo.save(obj);
+        try {  repo.save(obj);}
+        catch (DataIntegrityViolationException e){
+            throw new DataIntegrityException("Não é possivel cadastrar um email/cpf ja cadastrado!");
+
+        } return obj;
     }
 
 
@@ -68,6 +73,11 @@ public class ClienteService {
         return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),null,
                            objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
                            objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(),null,null);
+    }
+    public Cliente fromDto(ClienteNewDTO objDto){
+        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),objDto.getCpf(),
+                objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
+                objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(), objDto.getRg(), objDto.getDataNasc());
     }
 
     private void updateData(Cliente newObj, Cliente obj){

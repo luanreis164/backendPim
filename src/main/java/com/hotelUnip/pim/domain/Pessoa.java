@@ -2,10 +2,7 @@ package com.hotelUnip.pim.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Objects;
@@ -18,8 +15,13 @@ public abstract class Pessoa implements Serializable{
         private Integer id;
 
         private String nome;
+
+        @Column(unique = true)
         private String email;
+
+        @Column(unique = true)
         private String cpf;
+
         private String rua;
         private String bairro;
         private String numero;
