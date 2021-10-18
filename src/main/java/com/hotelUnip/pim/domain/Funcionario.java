@@ -4,6 +4,7 @@ package com.hotelUnip.pim.domain;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -24,7 +25,7 @@ public class Funcionario extends Pessoa {
     private String cargo;
     private Double salario;
 
-    @JsonIgnore
+    @JsonBackReference
     @OneToMany(mappedBy = "funcionario",cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Hospedagem> hospedagens =  new ArrayList<>();
 

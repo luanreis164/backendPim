@@ -2,14 +2,18 @@ package com.hotelUnip.pim.controllers;
 
 
 import com.hotelUnip.pim.domain.Funcionario;
+import com.hotelUnip.pim.domain.Funcionario;
+import com.hotelUnip.pim.dto.FuncionarioDTO;
+import com.hotelUnip.pim.dto.FuncionarioNewDTO;
 import com.hotelUnip.pim.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -30,6 +34,45 @@ public class FuncionarioController {
         return ResponseEntity.ok().body(lista);
 
     }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<Void> update(@Valid @RequestBody FuncionarioDTO objDto, @PathVariable Integer id){
+        Funcionario obj = service.fromDto(objDto);
+        obj.setId(id);
+        obj = service.update(obj);
+        return ResponseEntity.noContent().build();
+
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Integer id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping(value = "/page")
+    public ResponseEntity<Page<FuncionarioDTO>> findPage(@RequestParam(value = "page",defaultValue = "0") Integer page,
+                                                     @RequestParam(value = "linesPerPage",defaultValue = "24")Integer linesPerPage,
+                                                     @RequestParam(value = "orderBy",defaultValue = "nome")String orderBy,
+                                                     @RequestParam(value = "direction",defaultValue = "ASC")String direction){
+        Page<Funcionario> list = service.findPage(page,linesPerPage,orderBy,direction);
+        Page<FuncionarioDTO> listDto = list.map(obj -> new FuncionarioDTO(obj));
+        return ResponseEntity.ok().body(listDto);
+
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> insert(@Valid @RequestBody FuncionarioNewDTO objDto){
+        Funcionario obj = service.fromDto(objDto);
+        obj = service.insert(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).build();
+
+    }
+
+
 
 
 

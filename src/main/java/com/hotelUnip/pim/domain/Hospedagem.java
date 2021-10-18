@@ -1,6 +1,7 @@
 package com.hotelUnip.pim.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -21,6 +22,7 @@ public class Hospedagem implements Serializable {
     private Double valor;
 
 
+    @JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
