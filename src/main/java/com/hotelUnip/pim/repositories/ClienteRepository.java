@@ -9,5 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente,Integer> {
 
+    @Transactional(readOnly = true)
+    Cliente findByEmail(String email);
+
+    @Transactional(readOnly = true)
+    Cliente findByCpf(String cpf);
 
 }
