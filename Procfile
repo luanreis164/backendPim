@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT -Dspring.profiles=prod $JAVA_OPTS -jar target/pim-0.0.1-SNAPSHOT.jar
