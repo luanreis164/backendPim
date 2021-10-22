@@ -31,6 +31,9 @@ public class ReservaDTO implements Serializable {
     @NotNull
     private Integer cliente;
 
+    @NotNull
+    private Integer quarto;
+
 
 
     public ReservaDTO() {
@@ -42,6 +45,7 @@ public class ReservaDTO implements Serializable {
         dataReserva = obj.getDataReserva();
         tempoEstadia = obj.getTempoEstadia();
         cliente = obj.getCliente().getId();
+        quarto = obj.getQuarto().getId();
     }
 
     public Integer getId() {
@@ -84,7 +88,13 @@ public class ReservaDTO implements Serializable {
         this.cliente = cliente;
     }
 
+    public Integer getQuarto() {
+        return quarto;
+    }
 
+    public void setQuarto(Integer quarto) {
+        this.quarto = quarto;
+    }
 }
 
 

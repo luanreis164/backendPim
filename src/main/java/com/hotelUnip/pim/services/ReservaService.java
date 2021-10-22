@@ -3,10 +3,7 @@ package com.hotelUnip.pim.services;
 import com.hotelUnip.pim.domain.*;
 import com.hotelUnip.pim.domain.Reserva;
 import com.hotelUnip.pim.dto.ReservaDTO;
-import com.hotelUnip.pim.repositories.ClienteRepository;
-import com.hotelUnip.pim.repositories.HospedagemRepository;
-import com.hotelUnip.pim.repositories.PagamentoRepository;
-import com.hotelUnip.pim.repositories.ReservaRepository;
+import com.hotelUnip.pim.repositories.*;
 import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
 import com.hotelUnip.pim.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +30,9 @@ public class ReservaService {
 
     @Autowired
     private PagamentoRepository pagamentoRepository;
+
+    @Autowired
+    private QuartoRepository quartoRepository;
 
     public Reserva find(Integer id){
         Optional<Reserva> obj = repo.findById(id);
@@ -86,7 +86,8 @@ public class ReservaService {
 
     public Reserva fromDto(ReservaDTO objDto){
         Cliente cliente =  clienteRepository.getById(objDto.getCliente());
-        return new Reserva(objDto.getId(), objDto.getDataChegada(),objDto.getDataReserva(), objDto.getTempoEstadia(),cliente);
+        Quarto quarto = quartoRepository.getById(objDto.getQuarto());
+        return new Reserva(objDto.getId(), objDto.getDataChegada(),objDto.getDataReserva(), objDto.getTempoEstadia(),cliente,quarto);
     }
 
     private void updateData(Reserva newObj, Reserva obj){

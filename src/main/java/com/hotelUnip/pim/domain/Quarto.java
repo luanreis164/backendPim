@@ -27,7 +27,9 @@ public class Quarto implements Serializable {
     @JoinColumn(name = "hospedagem_id")
     private Hospedagem hospedagem;
 
-
+    @JsonIgnore
+    @OneToOne(mappedBy = "quarto")
+    private Reserva reserva;
 
 
     // CONSTRUTORES ---------------------
@@ -83,6 +85,14 @@ public class Quarto implements Serializable {
 
     public void setHospedagem(Hospedagem hospedagem) {
         this.hospedagem = hospedagem;
+    }
+
+    public Reserva getReserva() {
+        return reserva;
+    }
+
+    public void setReserva(Reserva reserva) {
+        this.reserva = reserva;
     }
 
     // HASHCODE & EQUALS --------------------------------

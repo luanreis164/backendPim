@@ -38,18 +38,24 @@ public class Reserva implements Serializable{
     private Pagamento pagamento;
 
 
+    @OneToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name = "quarto_id")
+    private Quarto quarto;
+
+
 
     // CONSTRUTORES --------------------------------
 
     public Reserva() {
     }
 
-    public Reserva(Integer id, Date dataChegada, Date dataReserva, Integer tempoEstadia, Cliente cliente) {
+    public Reserva(Integer id, Date dataChegada, Date dataReserva, Integer tempoEstadia, Cliente cliente,Quarto quarto) {
         this.id = id;
         this.dataChegada = dataChegada;
         this.dataReserva = dataReserva;
         this.tempoEstadia = tempoEstadia;
         this.cliente = cliente;
+        this.quarto = quarto;
     }
 
     // GETTER / SETTERS --------------------------------
@@ -108,6 +114,14 @@ public class Reserva implements Serializable{
 
     public void setPagamento(Pagamento pagamento) {
         this.pagamento = pagamento;
+    }
+
+    public Quarto getQuarto() {
+        return quarto;
+    }
+
+    public void setQuarto(Quarto quarto) {
+        this.quarto = quarto;
     }
 
     // HASHCODE & EQUALS --------------------------------

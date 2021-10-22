@@ -55,11 +55,6 @@ public class DBService {
 
         clienteRepository.saveAll(Arrays.asList(cli1,cli2));
 
-        Reserva reserva1 = new Reserva(null,sdf.parse("25/11/2021 11:37"),sdf.parse("22/12/2021 19:30"),35,cli1);
-        Reserva reserva2 = new Reserva(null,sdf.parse("25/11/2021 21:44"),sdf.parse("22/12/2021 14:40"),35,cli2);
-
-
-        reservaRepository.saveAll(Arrays.asList(reserva1,reserva2));
 
         Categoria cat1 = new Categoria(null,"Suite Royal 01",205.00);
         Categoria cat2 = new Categoria(null,"Suite Royal Deluxe 01",260.00);
@@ -72,6 +67,12 @@ public class DBService {
 
         categoriaRepository.saveAll(Arrays.asList(cat1,cat2));
         quartoRepository.saveAll(Arrays.asList(quarto1,quarto2));
+
+        Reserva reserva1 = new Reserva(null,sdf.parse("25/11/2021 11:37"),sdf.parse("22/12/2021 19:30"),35,cli1,quarto1);
+        Reserva reserva2 = new Reserva(null,sdf.parse("25/11/2021 21:44"),sdf.parse("22/12/2021 14:40"),35,cli2,quarto2);
+
+
+        reservaRepository.saveAll(Arrays.asList(reserva1,reserva2));
 
         Funcionario funcionario1 = new Funcionario(null,"Thalita","ca@gmail.com","1554448877","Israel Rodrigues","Tude Bastos","131",
                 "11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 13:30"),"487D87A",

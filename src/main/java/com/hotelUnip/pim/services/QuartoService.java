@@ -31,7 +31,7 @@ public class QuartoService {
     public Quarto find(Integer id){
         Optional<Quarto> obj = repo.findById(id);
         return obj.orElseThrow(()-> new ObjectNotFoundException(
-                "Quarto não encontrada! Id: " + id + ",Tipo: " + Quarto.class.getName()));
+                "Quarto não encontrado! Id: " + id + ",Tipo: " + Quarto.class.getName()));
     }
 
     public List<Quarto> findAll(){
@@ -58,7 +58,7 @@ public class QuartoService {
 
         }
         catch (DataIntegrityViolationException e ){
-            throw new DataIntegrityException("Não é possivel excluir uma Quarto que contém quartos!");
+            throw new DataIntegrityException("Não é possivel excluir um quarto que contém reserva!");
         }
 
     }
