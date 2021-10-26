@@ -11,6 +11,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,12 +21,15 @@ import java.util.Optional;
 public class GerenteService {
 
     @Autowired
+    private BCryptPasswordEncoder pe;
+
+    @Autowired
     private GerenteRepository repo;
 
     public Gerente find(Integer id){
         Optional<Gerente> obj = repo.findById(id);
         return obj.orElseThrow(()-> new ObjectNotFoundException(
-                "Gerente não encontrada! Id: " + id + ",Tipo: " + Gerente.class.getName()));
+                "Gerente não encontrado! Id: " + id + ",Tipo: " + Gerente.class.getName()));
     }
 
     public List<Gerente> findAll(){
@@ -76,13 +80,13 @@ public class GerenteService {
 
 
     public Gerente fromDto(GerenteDTO objDto){
-        return new Gerente(objDto.getId(), objDto.getNome(),objDto.getEmail(),null,
+        return new Gerente(objDto.getId(), objDto.getNome(),objDto.getEmail(),null,null,
                 objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
                 objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(),null,null,objDto.getMatricula(),
                 objDto.getCtps(),objDto.getDataAdmissao(),objDto.getCargo(),objDto.getSalario(), objDto.getBonificacao());
     }
     public Gerente fromDto(GerenteNewDTO objDto){
-        return new Gerente(objDto.getId(), objDto.getNome(),objDto.getEmail(),objDto.getCpf(),
+        return new Gerente(objDto.getId(), objDto.getNome(),objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCpf(),
                 objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
                 objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(), objDto.getRg(), objDto.getDataNasc(),objDto.getMatricula(),
                 objDto.getCtps(),objDto.getDataAdmissao(),objDto.getCargo(),objDto.getSalario(), objDto.getBonificacao());

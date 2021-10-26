@@ -34,10 +34,10 @@ public class Funcionario extends Pessoa {
     public Funcionario() {
     }
 
-    public Funcionario(Integer id, String nome, String email,String cpf, String rua, String bairro, String numero, String cep,
+    public Funcionario(Integer id, String nome, String email,String senha,String cpf, String rua, String bairro, String numero, String cep,
                        String cidade, String estado, String telefone, String rg, Date dataNasc,
                        String matricula, String ctps, Date dataAdmissao, String cargo, Double salario) {
-        super(id, nome,email, cpf, rua, bairro, numero, cep, cidade, estado, telefone, rg, dataNasc);
+        super(id, nome,email,senha, cpf, rua, bairro, numero, cep, cidade, estado, telefone, rg, dataNasc);
         this.matricula = matricula;
         this.ctps = ctps;
         this.dataAdmissao = dataAdmissao;

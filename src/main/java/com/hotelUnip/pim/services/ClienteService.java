@@ -13,6 +13,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.HandlerMapping;
 
@@ -24,6 +25,8 @@ import java.util.Optional;
 @Service
 public class ClienteService {
 
+    @Autowired
+    private BCryptPasswordEncoder pe;
 
     @Autowired
     private HttpServletRequest request;
@@ -91,12 +94,12 @@ public class ClienteService {
 
 
     public Cliente fromDto(ClienteDTO objDto){
-        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),null,
+        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),null,null,
                            objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
                            objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(),null,null);
     }
     public Cliente fromDto(ClienteNewDTO objDto){
-        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),objDto.getCpf(),
+        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCpf(),
                 objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
                 objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(), objDto.getRg(), objDto.getDataNasc());
     }

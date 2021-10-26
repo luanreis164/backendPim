@@ -24,9 +24,9 @@ public class Cliente extends Pessoa {
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nome, String email, String cpf, String rua, String bairro, String numero, String cep, String cidade,
+    public Cliente(Integer id, String nome, String email,String senha, String cpf, String rua, String bairro, String numero, String cep, String cidade,
                    String estado, String telefone, String rg, Date dataNasc) {
-        super(id, nome, email, cpf, rua, bairro, numero, cep, cidade, estado, telefone, rg, dataNasc);
+        super(id, nome, email,senha, cpf, rua, bairro, numero, cep, cidade, estado, telefone, rg, dataNasc);
     }
 
     // GETTER / SETTERS

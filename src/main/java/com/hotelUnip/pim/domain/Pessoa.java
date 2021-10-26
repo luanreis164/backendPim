@@ -1,6 +1,7 @@
 package com.hotelUnip.pim.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -18,6 +19,9 @@ public abstract class Pessoa implements Serializable{
 
         @Column(unique = true)
         private String email;
+
+        @JsonIgnore
+        private String senha;
 
         @Column(unique = true)
         private String cpf;
@@ -40,11 +44,12 @@ public abstract class Pessoa implements Serializable{
         public Pessoa() {
         }
 
-        public Pessoa(Integer id, String nome, String email , String cpf, String rua, String bairro, String numero, String cep,
+        public Pessoa(Integer id, String nome, String email,String senha , String cpf, String rua, String bairro, String numero, String cep,
                       String cidade, String estado, String telefone, String rg, Date dataNasc) {
                 this.id = id;
                 this.nome = nome;
                 this.email = email;
+                this.senha = senha;
                 this.cpf = cpf;
                 this.rua = rua;
                 this.bairro = bairro;
@@ -82,7 +87,6 @@ public abstract class Pessoa implements Serializable{
         public void setCpf(String cpf) {
                 this.cpf = cpf;
         }
-
 
         public String getTelefone() {
                 return telefone;
@@ -164,7 +168,14 @@ public abstract class Pessoa implements Serializable{
                 this.email = email;
         }
 
-        // HASHCODE & EQUALS
+        public String getSenha() {
+                return senha;
+        }
+
+        public void setSenha(String senha) {
+                this.senha = senha;
+        }
+// HASHCODE & EQUALS
 
         @Override
         public boolean equals(Object o) {

@@ -26,10 +26,14 @@ public class FuncionarioNewDTO implements Serializable {
     @NotEmpty(message = "Preenchimento obrigatório")
     private String email;
 
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 4, max = 14,message = "O senha deve ter entre 4 e 14 caraceteres")
+    private String senha;
+
+
     @CPF
     @NotEmpty(message = "Preenchimento obrigatório")
     private String cpf;
-
 
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 5, max = 25,message = "O tamanho deve ter entre 5 e 25 caraceteres")
@@ -93,6 +97,7 @@ public class FuncionarioNewDTO implements Serializable {
         id = obj.getId();
         nome = obj.getNome();
         email = obj.getEmail();
+        senha = obj.getSenha();
         cpf = obj.getCpf();
         rua = obj.getRua();
         bairro = obj.getBairro();
@@ -253,5 +258,13 @@ public class FuncionarioNewDTO implements Serializable {
 
     public void setSalario(Double salario) {
         this.salario = salario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }

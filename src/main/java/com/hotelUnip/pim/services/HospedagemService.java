@@ -71,7 +71,7 @@ public class HospedagemService {
 
         }
         catch (DataIntegrityViolationException e ){
-            throw new DataIntegrityException("Não é possivel excluir uma Hospedagem reservada!");
+            throw new DataIntegrityException("Não foi possivel excluir!");
         }
 
     }

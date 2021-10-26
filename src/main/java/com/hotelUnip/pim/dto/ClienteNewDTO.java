@@ -23,6 +23,11 @@ public class ClienteNewDTO implements Serializable {
     @NotEmpty(message = "Preenchimento obrigatório")
     private String email;
 
+    @NotEmpty(message = "Preenchimento obrigatório")
+    @Length(min = 4, max = 14,message = "O senha deve ter entre 4 e 14 caraceteres")
+    private String senha;
+
+
     @CPF
     @NotEmpty(message = "Preenchimento obrigatório")
     private String cpf;
@@ -72,6 +77,7 @@ public class ClienteNewDTO implements Serializable {
         id = obj.getId();
         nome = obj.getNome();
         email = obj.getEmail();
+        senha = obj.getSenha();
         cpf = obj.getCpf();
         rua = obj.getRua();
         bairro = obj.getBairro();
@@ -187,5 +193,13 @@ public class ClienteNewDTO implements Serializable {
 
     public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 }
