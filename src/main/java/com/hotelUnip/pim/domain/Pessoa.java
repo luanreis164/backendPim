@@ -2,11 +2,15 @@ package com.hotelUnip.pim.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.hotelUnip.pim.domain.enums.Perfil;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public abstract class Pessoa implements Serializable{
@@ -23,6 +27,7 @@ public abstract class Pessoa implements Serializable{
         @JsonIgnore
         private String senha;
 
+
         @Column(unique = true)
         private String cpf;
 
@@ -38,6 +43,9 @@ public abstract class Pessoa implements Serializable{
         @JsonFormat(pattern = "dd/MM/yyyy")
         private Date dataNasc;
 
+        @ElementCollection(fetch = FetchType.EAGER)
+        @CollectionTable(name = "PERFIS")
+        private Set<Integer> perfis = new HashSet<>();
 
         // CONSTRUTORES ---------------------
 
@@ -175,6 +183,15 @@ public abstract class Pessoa implements Serializable{
         public void setSenha(String senha) {
                 this.senha = senha;
         }
+
+        public Set<Perfil> getPerfis(){
+                return perfis.stream().map( x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+        }
+
+        public void addPerfil(Perfil perfil){
+                perfis.add(perfil.getCod());
+        }
+
 // HASHCODE & EQUALS
 
         @Override

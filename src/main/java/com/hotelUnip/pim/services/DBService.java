@@ -2,6 +2,7 @@ package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.*;
 import com.hotelUnip.pim.domain.enums.EstadoPagamento;
+import com.hotelUnip.pim.domain.enums.Perfil;
 import com.hotelUnip.pim.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -56,6 +57,8 @@ public class DBService {
 
         Cliente cli2 = new Cliente(null, "Jao","exemplo@gmail.com", passwordEncoder.encode("b4b12"), "59795386077", "Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
                 "Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 13:30"));
+
+        cli2.addPerfil(Perfil.FUNCIONARIO);
 
         clienteRepository.saveAll(Arrays.asList(cli1,cli2));
 

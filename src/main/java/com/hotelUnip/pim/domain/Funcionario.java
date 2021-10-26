@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.hotelUnip.pim.domain.enums.Perfil;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -32,6 +33,7 @@ public class Funcionario extends Pessoa {
     // CONSTRUTORES ---------------------
 
     public Funcionario() {
+        addPerfil(Perfil.FUNCIONARIO);
     }
 
     public Funcionario(Integer id, String nome, String email,String senha,String cpf, String rua, String bairro, String numero, String cep,
@@ -43,6 +45,7 @@ public class Funcionario extends Pessoa {
         this.dataAdmissao = dataAdmissao;
         this.cargo = cargo;
         this.salario = salario;
+        addPerfil(Perfil.FUNCIONARIO);
     }
 
     // GETTER / SETTERS
