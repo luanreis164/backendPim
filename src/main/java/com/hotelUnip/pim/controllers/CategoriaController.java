@@ -6,6 +6,7 @@ import com.hotelUnip.pim.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -34,6 +35,7 @@ public class CategoriaController {
         return ResponseEntity.ok().body(listaDto);
     }
 
+    @PreAuthorize("hasAnyRole('GERENTE')")
     @PostMapping
     public ResponseEntity<Void> insert( @Valid @RequestBody CategoriaDTO objDto){
         Categoria obj = service.fromDto(objDto);
@@ -44,6 +46,7 @@ public class CategoriaController {
 
     }
 
+    @PreAuthorize("hasAnyRole('GERENTE')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody CategoriaDTO objDto,@PathVariable Integer id){
         Categoria obj = service.fromDto(objDto);
@@ -53,6 +56,7 @@ public class CategoriaController {
 
     }
 
+    @PreAuthorize("hasAnyRole('GERENTE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);

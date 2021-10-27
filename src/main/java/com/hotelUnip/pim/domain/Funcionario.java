@@ -3,8 +3,6 @@ package com.hotelUnip.pim.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.hotelUnip.pim.domain.enums.Perfil;
 
 import javax.persistence.CascadeType;

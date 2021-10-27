@@ -1,11 +1,10 @@
 package com.hotelUnip.pim.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Objects;
 
 @Entity
 public class Quarto implements Serializable {

@@ -1,13 +1,11 @@
 package com.hotelUnip.pim.dto;
 
 
-import com.hotelUnip.pim.domain.Categoria;
 import com.hotelUnip.pim.domain.Cliente;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 public class ClienteDTO implements Serializable {

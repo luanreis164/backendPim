@@ -3,7 +3,6 @@ package com.hotelUnip.pim.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hotelUnip.pim.domain.PagamentoComBoleto;
-import com.hotelUnip.pim.domain.PagamentoComCartao;
 
 import java.io.Serializable;
 import java.util.Date;

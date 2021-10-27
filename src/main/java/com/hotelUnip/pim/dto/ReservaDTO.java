@@ -2,16 +2,8 @@ package com.hotelUnip.pim.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.hotelUnip.pim.domain.Cliente;
-import com.hotelUnip.pim.domain.Hospedagem;
-import com.hotelUnip.pim.domain.Pagamento;
 import com.hotelUnip.pim.domain.Reserva;
 
-import javax.persistence.CascadeType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;

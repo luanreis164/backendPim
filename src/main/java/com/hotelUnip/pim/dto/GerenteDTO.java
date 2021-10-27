@@ -2,7 +2,6 @@ package com.hotelUnip.pim.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.hotelUnip.pim.domain.Funcionario;
 import com.hotelUnip.pim.domain.Gerente;
 import org.hibernate.validator.constraints.Length;
 

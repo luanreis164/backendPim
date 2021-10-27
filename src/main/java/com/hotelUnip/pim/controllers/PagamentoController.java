@@ -7,6 +7,7 @@ import com.hotelUnip.pim.dto.PagamentoComCartaoDTO;
 import com.hotelUnip.pim.services.PagamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -27,6 +28,7 @@ public class PagamentoController {
         return ResponseEntity.ok().body(obj);
     }
 
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @GetMapping
     public ResponseEntity<List<Pagamento>> findAll(){
         List<Pagamento> lista = service.findAll();
@@ -35,6 +37,7 @@ public class PagamentoController {
     }
 
 
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @PostMapping(value = "/cartao")
     public ResponseEntity<Void> insert( @Valid @RequestBody PagamentoComCartaoDTO objDto){
         Pagamento obj = service.fromDto(objDto);
@@ -46,6 +49,7 @@ public class PagamentoController {
 
     }
 
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @PostMapping(value = "/boleto")
     public ResponseEntity<Void> insertBoleto( @Valid @RequestBody PagamentoComBoletoDTO objDto){
         Pagamento obj = service.boletoFromDto(objDto);
@@ -55,6 +59,7 @@ public class PagamentoController {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> updateCartao(@Valid @RequestBody PagamentoComCartaoDTO objDto, @PathVariable Integer id){
         Pagamento obj = service.fromDto(objDto);
@@ -63,6 +68,8 @@ public class PagamentoController {
         return ResponseEntity.noContent().build();
 
     }
+
+    @PreAuthorize("hasAnyRole('GERENTE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);

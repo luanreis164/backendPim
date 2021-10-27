@@ -1,6 +1,9 @@
 package com.hotelUnip.pim.services;
 
-import com.hotelUnip.pim.domain.*;
+import com.hotelUnip.pim.domain.Pagamento;
+import com.hotelUnip.pim.domain.PagamentoComBoleto;
+import com.hotelUnip.pim.domain.PagamentoComCartao;
+import com.hotelUnip.pim.domain.Reserva;
 import com.hotelUnip.pim.domain.enums.EstadoPagamento;
 import com.hotelUnip.pim.dto.PagamentoComBoletoDTO;
 import com.hotelUnip.pim.dto.PagamentoComCartaoDTO;
@@ -16,7 +19,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

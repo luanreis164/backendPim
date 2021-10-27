@@ -1,6 +1,7 @@
 package com.hotelUnip.pim.services;
 
-import com.hotelUnip.pim.domain.*;
+import com.hotelUnip.pim.domain.Cliente;
+import com.hotelUnip.pim.domain.Quarto;
 import com.hotelUnip.pim.domain.Reserva;
 import com.hotelUnip.pim.dto.ReservaDTO;
 import com.hotelUnip.pim.repositories.*;

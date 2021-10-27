@@ -52,13 +52,12 @@ public class DBService {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-        Cliente cli1 = new Cliente(null, "Luan","luanreis2202@gmail.com", passwordEncoder.encode("456123"), "48000547880","Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
+        Cliente cli1 = new Cliente(null, "Fulano","fulano@gmail.com", passwordEncoder.encode("123"), "78588738066","Rua Anchieta","Vila Mirim", "5217", "11332330",
                 "Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 18:35"));
 
-        Cliente cli2 = new Cliente(null, "Jao","exemplo@gmail.com", passwordEncoder.encode("b4b12"), "59795386077", "Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
+        Cliente cli2 = new Cliente(null, "Ciclano","exemplo@gmail.com", passwordEncoder.encode("1234"), "59795386077", "Rua Josefina Bakhita","Vila Sonia", "527", "11722330",
                 "Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 13:30"));
 
-        cli2.addPerfil(Perfil.FUNCIONARIO);
 
         clienteRepository.saveAll(Arrays.asList(cli1,cli2));
 
@@ -81,13 +80,13 @@ public class DBService {
 
         reservaRepository.saveAll(Arrays.asList(reserva1,reserva2));
 
-        Funcionario funcionario1 = new Funcionario(null,"Thalita","ca@gmail.com", passwordEncoder.encode("123456"), "1554448877","Israel Rodrigues","Tude Bastos","131",
-                "11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 13:30"),"487D87A",
+        Funcionario funcionario1 = new Funcionario(null,"Ednaldo Pereira","ed@gmail.com", passwordEncoder.encode("123456"), "21177857006","Rua Campos Gemeos","Ponta da Praia","131",
+                "11722330","Santos","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 13:30"),"487D87A",
                 "655778-8",sdf.parse("22/04/2021 19:30"),"Atendente",1.7500);
 
         funcionarioRepository.saveAll(Arrays.asList(funcionario1));
 
-        Gerente gerente1 = new Gerente(null,"Luan","luanreis112@gmail.com", passwordEncoder.encode("444fff"), "480054788899","Josefina Bakhita","vila Sonia","527",
+        Gerente gerente1 = new Gerente(null,"Ricardo Milos","ricardomilos@gmail.com", passwordEncoder.encode("444fff"), "19830592006","Josefina Bakhita","vila Sonia","527",
                 "11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 09:48"),"99F77841",
                 "6466774-8",sdf.parse("22/08/2019 19:30"),"Gerente",2.7500,350.00);
 

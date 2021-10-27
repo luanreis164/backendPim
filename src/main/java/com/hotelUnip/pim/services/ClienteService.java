@@ -1,11 +1,9 @@
 package com.hotelUnip.pim.services;
 
-import com.hotelUnip.pim.domain.Categoria;
 import com.hotelUnip.pim.domain.Cliente;
 import com.hotelUnip.pim.dto.ClienteDTO;
 import com.hotelUnip.pim.dto.ClienteNewDTO;
 import com.hotelUnip.pim.repositories.ClienteRepository;
-import com.hotelUnip.pim.services.exceptions.ConstraintViolationException;
 import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
 import com.hotelUnip.pim.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,11 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.HandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @Service

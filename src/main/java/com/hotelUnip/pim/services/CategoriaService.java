@@ -1,7 +1,6 @@
 package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.Categoria;
-import com.hotelUnip.pim.domain.Cliente;
 import com.hotelUnip.pim.dto.CategoriaDTO;
 import com.hotelUnip.pim.repositories.CategoriaRepository;
 import com.hotelUnip.pim.services.exceptions.DataIntegrityException;

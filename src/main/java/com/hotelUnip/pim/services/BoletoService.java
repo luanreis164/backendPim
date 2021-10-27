@@ -1,6 +1,5 @@
 package com.hotelUnip.pim.services;
 
-import com.hotelUnip.pim.domain.PagamentoComBoleto;
 import com.hotelUnip.pim.dto.PagamentoComBoletoDTO;
 import org.springframework.stereotype.Service;
 

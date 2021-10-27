@@ -1,8 +1,6 @@
 package com.hotelUnip.pim.services;
 
-import com.hotelUnip.pim.domain.Cliente;
 import com.hotelUnip.pim.domain.Pessoa;
-import com.hotelUnip.pim.repositories.ClienteRepository;
 import com.hotelUnip.pim.repositories.PessoaRepository;
 import com.hotelUnip.pim.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;

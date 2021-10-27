@@ -3,6 +3,7 @@ package com.hotelUnip.pim.domain;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hotelUnip.pim.domain.enums.Perfil;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -28,6 +29,7 @@ public abstract class Pessoa implements Serializable{
         private String senha;
 
 
+        @CPF
         @Column(unique = true)
         private String cpf;
 

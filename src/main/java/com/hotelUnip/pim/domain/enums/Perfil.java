@@ -1,7 +1,5 @@
 package com.hotelUnip.pim.domain.enums;
 
-import org.springframework.security.core.parameters.P;
-
 public enum Perfil {
 
     FUNCIONARIO(1,"ROLE_FUNCIONARIO"),

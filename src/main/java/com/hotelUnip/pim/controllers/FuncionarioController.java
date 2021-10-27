@@ -9,6 +9,7 @@ import com.hotelUnip.pim.services.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -35,6 +36,7 @@ public class FuncionarioController {
 
     }
 
+    @PreAuthorize("hasAnyRole('GERENTE')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody FuncionarioDTO objDto, @PathVariable Integer id){
         Funcionario obj = service.fromDto(objDto);
@@ -44,6 +46,7 @@ public class FuncionarioController {
 
     }
 
+    @PreAuthorize("hasAnyRole('GERENTE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);
@@ -62,6 +65,7 @@ public class FuncionarioController {
 
     }
 
+    @PreAuthorize("hasAnyRole('GERENTE')")
     @PostMapping
     public ResponseEntity<Void> insert(@Valid @RequestBody FuncionarioNewDTO objDto){
         Funcionario obj = service.fromDto(objDto);
