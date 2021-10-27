@@ -30,7 +30,6 @@ public class FuncionarioNewDTO implements Serializable {
     @Length(min = 4, max = 14,message = "O senha deve ter entre 4 e 14 caraceteres")
     private String senha;
 
-
     @CPF
     @NotEmpty(message = "Preenchimento obrigatório")
     private String cpf;
