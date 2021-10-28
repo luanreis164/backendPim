@@ -4,16 +4,13 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 
-public class CredenciaisDTO implements Serializable{
+public class EmailDTO implements Serializable {
 
     @Email
     @NotEmpty(message = "Preenchimento obrigatório")
     private String email;
 
-    @NotEmpty(message = "Senha obrigatória")
-    private String senha;
-
-    public CredenciaisDTO() {
+    public EmailDTO() {
     }
 
     public String getEmail() {
@@ -22,13 +19,5 @@ public class CredenciaisDTO implements Serializable{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
     }
 }

@@ -29,6 +29,7 @@ public class ClienteController {
         return ResponseEntity.ok().body(obj);
     }
 
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> findAll(){
         List<Cliente> lista = service.findAll();
@@ -36,6 +37,7 @@ public class ClienteController {
         return ResponseEntity.ok().body(listaDto);
     }
 
+    @PreAuthorize("hasAnyRole('CLIENTE')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
         Cliente obj = service.fromDto(objDto);

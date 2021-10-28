@@ -52,7 +52,7 @@ public class DBService {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 
-        Cliente cli1 = new Cliente(null, "Fulano","fulano@gmail.com", passwordEncoder.encode("123"), "78588738066","Rua Anchieta","Vila Mirim", "5217", "11332330",
+        Cliente cli1 = new Cliente(null, "Fulano","luanreis2202@gmail.com", passwordEncoder.encode("123"), "78588738066","Rua Anchieta","Vila Mirim", "5217", "11332330",
                 "Praia Grande", "São Paulo", "13996735588", "556481550",sdf.parse("22/02/1999 18:35"));
 
         Cliente cli2 = new Cliente(null, "Ciclano","exemplo@gmail.com", passwordEncoder.encode("1234"), "59795386077", "Rua Josefina Bakhita","Vila Sonia", "527", "11722330",

@@ -1,9 +1,12 @@
 package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.Cliente;
+import com.hotelUnip.pim.domain.enums.Perfil;
 import com.hotelUnip.pim.dto.ClienteDTO;
 import com.hotelUnip.pim.dto.ClienteNewDTO;
 import com.hotelUnip.pim.repositories.ClienteRepository;
+import com.hotelUnip.pim.security.UserSS;
+import com.hotelUnip.pim.services.exceptions.AuthorizationException;
 import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
 import com.hotelUnip.pim.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +34,11 @@ public class ClienteService {
     private ClienteRepository repo;
 
     public Cliente find(Integer id){
+
+        UserSS user = UserService.authenticated();
+        if ( user == null || !user.hasRole(Perfil.FUNCIONARIO) && !id.equals(user.getId())){
+            throw new AuthorizationException("Acesso negado");
+        }
         Optional<Cliente> obj = repo.findById(id);
         return obj.orElseThrow(()-> new ObjectNotFoundException(
                 "Cliente não encontrada! Id: " + id + ",Tipo: " + Cliente.class.getName()));
@@ -90,7 +98,7 @@ public class ClienteService {
 
 
     public Cliente fromDto(ClienteDTO objDto){
-        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),null,null,
+        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),pe.encode(objDto.getSenha()),null,
                            objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
                            objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(),null,null);
     }
@@ -103,6 +111,7 @@ public class ClienteService {
     private void updateData(Cliente newObj, Cliente obj){
         newObj.setNome(obj.getNome());
         newObj.setEmail(obj.getEmail());
+        newObj.setSenha(obj.getSenha());
         newObj.setRua(obj.getRua());
         newObj.setBairro(obj.getBairro());
         newObj.setNumero(obj.getNumero());

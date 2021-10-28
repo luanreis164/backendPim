@@ -80,7 +80,7 @@ public class FuncionarioService {
 
 
     public Funcionario fromDto(FuncionarioDTO objDto){
-        return new Funcionario(objDto.getId(), objDto.getNome(),objDto.getEmail(),null,null,
+        return new Funcionario(objDto.getId(), objDto.getNome(),objDto.getEmail(), pe.encode(objDto.getSenha()),null,
                 objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
                 objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(),null,null,objDto.getMatricula(),
                 objDto.getCtps(),objDto.getDataAdmissao(),objDto.getCargo(),objDto.getSalario());
@@ -95,6 +95,7 @@ public class FuncionarioService {
     private void updateData(Funcionario newObj, Funcionario obj){
         newObj.setNome(obj.getNome());
         newObj.setEmail(obj.getEmail());
+        newObj.setSenha(obj.getSenha());
         newObj.setRua(obj.getRua());
         newObj.setBairro(obj.getBairro());
         newObj.setNumero(obj.getNumero());

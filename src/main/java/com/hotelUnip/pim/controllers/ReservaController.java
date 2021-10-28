@@ -22,12 +22,14 @@ public class ReservaController {
     private ReservaService service;
 
 
+    @PreAuthorize("hasAnyRole('CLIENTE')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Reserva> find(@PathVariable Integer id){
         Reserva obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
 
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @GetMapping
     public ResponseEntity<List<Reserva>> findAll(){
         List<Reserva> lista = service.findAll();

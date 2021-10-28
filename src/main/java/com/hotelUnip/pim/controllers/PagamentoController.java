@@ -22,6 +22,7 @@ public class PagamentoController {
     @Autowired
     private PagamentoService service;
 
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Pagamento> find(@PathVariable Integer id){
         Pagamento obj = service.find(id);

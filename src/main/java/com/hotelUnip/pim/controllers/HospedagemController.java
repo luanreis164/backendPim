@@ -22,12 +22,15 @@ public class HospedagemController {
     @Autowired
     private HospedagemService service;
 
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Hospedagem> find(@PathVariable Integer id){
         Hospedagem obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
+
     @GetMapping
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     public ResponseEntity<List<Hospedagem>> findAll(){
         List<Hospedagem> lista = service.findAll();
         return ResponseEntity.ok().body(lista);
@@ -61,6 +64,7 @@ public class HospedagemController {
         return ResponseEntity.ok().body(listDto);
 
     }
+
     @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @PostMapping
     public ResponseEntity<Void> insert( @Valid @RequestBody HospedagemDTO objDto){
