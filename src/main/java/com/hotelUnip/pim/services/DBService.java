@@ -86,7 +86,7 @@ public class DBService {
 
         funcionarioRepository.saveAll(Arrays.asList(funcionario1));
 
-        Gerente gerente1 = new Gerente(null,"Ricardo Milos","ricardomilos@gmail.com", passwordEncoder.encode("444fff"), "19830592006","Josefina Bakhita","vila Sonia","527",
+        Gerente gerente1 = new Gerente(null,"Ricardo Milos","ricardomilos@gmail.com", passwordEncoder.encode("123"), "19830592006","Josefina Bakhita","vila Sonia","527",
                 "11722330","Praia Grande","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 09:48"),"99F77841",
                 "6466774-8",sdf.parse("22/08/2019 19:30"),"Gerente",2.7500,350.00);
 
