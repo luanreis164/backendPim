@@ -1,6 +1,8 @@
 package com.hotelUnip.pim.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -16,11 +18,15 @@ public class Reserva implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date dataChegada;
+
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private Date dataReserva;
+
     private Integer tempoEstadia;
 
-
+    private double valor;
 
     @JsonManagedReference
     @OneToOne(cascade = CascadeType.MERGE)
@@ -32,7 +38,7 @@ public class Reserva implements Serializable{
     @JoinColumn(name = "hospedagem_id")
     private Hospedagem hospedagem;
 
-
+    @JsonBackReference
     @OneToOne(mappedBy = "reserva")
     private Pagamento pagamento;
 
@@ -55,6 +61,7 @@ public class Reserva implements Serializable{
         this.tempoEstadia = tempoEstadia;
         this.cliente = cliente;
         this.quarto = quarto;
+        valor = setValor(valor);
     }
 
     // GETTER / SETTERS --------------------------------
@@ -123,6 +130,17 @@ public class Reserva implements Serializable{
         this.quarto = quarto;
     }
 
+    public double getValor() {
+        return valor;
+    }
+
+    public double setValor(double valor) {
+        valor = tempoEstadia * quarto.getCategoria().getPrecoDiaria();
+        this.valor = valor;
+        return valor;
+    }
+
+
     // HASHCODE & EQUALS --------------------------------
     @Override
     public boolean equals(Object o) {
@@ -136,4 +154,5 @@ public class Reserva implements Serializable{
     public int hashCode() {
         return Objects.hash(id);
     }
+
 }

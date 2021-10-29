@@ -76,9 +76,10 @@ public class DBService {
 
         Reserva reserva1 = new Reserva(null,sdf.parse("25/11/2021 11:37"),sdf.parse("22/12/2021 19:30"),35,cli1,quarto1);
         Reserva reserva2 = new Reserva(null,sdf.parse("25/11/2021 21:44"),sdf.parse("22/12/2021 14:40"),35,cli2,quarto2);
+        Reserva reserva3 = new Reserva(null,sdf.parse("25/11/2021 22:44"),sdf.parse("22/12/2021 14:40"),35,cli2,quarto1);
 
 
-        reservaRepository.saveAll(Arrays.asList(reserva1,reserva2));
+        reservaRepository.saveAll(Arrays.asList(reserva1,reserva2,reserva3));
 
         Funcionario funcionario1 = new Funcionario(null,"Ednaldo Pereira","ed@gmail.com", passwordEncoder.encode("123456"), "21177857006","Rua Campos Gemeos","Ponta da Praia","131",
                 "11722330","Santos","São Paulo","13981313431","5564488877",sdf.parse("08/09/1999 13:30"),"487D87A",

@@ -32,7 +32,7 @@ public class Hospedagem implements Serializable {
     private Reserva reserva;
 
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "quarto_id")
     private Quarto quarto;
 

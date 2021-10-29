@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -21,19 +22,21 @@ public class Quarto implements Serializable {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @OneToOne(mappedBy = "quarto")
+    @OneToMany(mappedBy = "quarto")
     @JsonIgnore
-    @JoinColumn(name = "hospedagem_id")
-    private Hospedagem hospedagem;
+    private List<Hospedagem> hospedagens;
 
     @JsonIgnore
     @OneToOne(mappedBy = "quarto")
     private Reserva reserva;
 
+    private boolean disponibilidadeDiaria;
+
 
     // CONSTRUTORES ---------------------
 
     public Quarto() {
+        disponibilidadeDiaria = true;
     }
 
     public Quarto(Integer id, Integer numero, Integer andar, Categoria categoria) {
@@ -78,12 +81,12 @@ public class Quarto implements Serializable {
         this.categoria = categoria;
     }
 
-    public Hospedagem getHospedagem() {
-        return hospedagem;
+    public List<Hospedagem> getHospedagens() {
+        return hospedagens;
     }
 
-    public void setHospedagem(Hospedagem hospedagem) {
-        this.hospedagem = hospedagem;
+    public void setHospedagens(List<Hospedagem> hospedagens) {
+        this.hospedagens = hospedagens;
     }
 
     public Reserva getReserva() {
@@ -92,6 +95,14 @@ public class Quarto implements Serializable {
 
     public void setReserva(Reserva reserva) {
         this.reserva = reserva;
+    }
+
+    public boolean isDisponibilidadeDiaria() {
+        return disponibilidadeDiaria;
+    }
+
+    public void setDisponibilidadeDiaria(boolean disponibilidadeDiaria) {
+        this.disponibilidadeDiaria = disponibilidadeDiaria;
     }
 
     // HASHCODE & EQUALS --------------------------------

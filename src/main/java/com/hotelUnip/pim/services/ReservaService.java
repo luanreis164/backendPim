@@ -1,8 +1,7 @@
 package com.hotelUnip.pim.services;
 
-import com.hotelUnip.pim.domain.Cliente;
-import com.hotelUnip.pim.domain.Quarto;
-import com.hotelUnip.pim.domain.Reserva;
+import com.hotelUnip.pim.domain.*;
+import com.hotelUnip.pim.domain.enums.EstadoPagamento;
 import com.hotelUnip.pim.dto.ReservaDTO;
 import com.hotelUnip.pim.repositories.*;
 import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
@@ -14,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,69 +35,75 @@ public class ReservaService {
     @Autowired
     private QuartoRepository quartoRepository;
 
-    public Reserva find(Integer id){
+
+    public Reserva find(Integer id) {
         Optional<Reserva> obj = repo.findById(id);
-        return obj.orElseThrow(()-> new ObjectNotFoundException(
+        return obj.orElseThrow(() -> new ObjectNotFoundException(
                 "Reserva não encontrada! Id: " + id + ",Tipo: " + Reserva.class.getName()));
     }
 
-    public List<Reserva> findAll(){
-      List<Reserva> list = repo.findAll();
-      return list;
+    public List<Reserva> findAll() {
+        List<Reserva> list = repo.findAll();
+        return list;
 
     }
 
 
-    public Reserva insert(Reserva obj){
+    public Reserva insert(Reserva obj) {
         obj.setId(null);
-        try {  repo.save(obj);}
-        catch (DataIntegrityViolationException e){
-            throw new DataIntegrityException("Não é possivel cadastrar um email/cpf ja cadastrado!");
 
-        } return obj;
+        try {
+            repo.save(obj);
+        } catch (DataIntegrityViolationException e) {
+            throw new DataIntegrityException("Não foi possivel cadastrar a reserva!");
+
+        }
+        return obj;
     }
 
 
-
-    public Reserva update(Reserva obj){
+    public Reserva update(Reserva obj) {
         Reserva newObj = find(obj.getId());
-        updateData(newObj,obj);
+        updateData(newObj, obj);
         return repo.save(newObj);
 
     }
 
 
-    public void delete(Integer id){
+    public void delete(Integer id) {
         find(id);
         try {
             repo.deleteById(id);
 
-        }
-        catch (DataIntegrityViolationException e ){
+        } catch (DataIntegrityViolationException e) {
             throw new DataIntegrityException("Não é possivel excluir uma Reserva reservada!");
         }
 
     }
 
-    public Page<Reserva> findPage(Integer page, Integer linesPerPage, String orderBy, String direction){
-        PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction),orderBy);
+    public Page<Reserva> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
+        PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
         return repo.findAll(pageRequest);
     }
 
 
-    public Reserva fromDto(ReservaDTO objDto){
-        Cliente cliente =  clienteRepository.getById(objDto.getCliente());
+    public Reserva fromDto(ReservaDTO objDto) {
+        Cliente cliente = clienteRepository.getById(objDto.getCliente());
         Quarto quarto = quartoRepository.getById(objDto.getQuarto());
-        return new Reserva(objDto.getId(), objDto.getDataChegada(),objDto.getDataReserva(), objDto.getTempoEstadia(),cliente,quarto);
+        return new Reserva(objDto.getId(), objDto.getDataChegada(), objDto.getDataReserva(), objDto.getTempoEstadia(), cliente, quarto);
     }
 
-    private void updateData(Reserva newObj, Reserva obj){
+    private void updateData(Reserva newObj, Reserva obj) {
         newObj.setDataChegada(obj.getDataChegada());
         newObj.setDataReserva(obj.getDataReserva());
         newObj.setTempoEstadia(obj.getTempoEstadia());
         newObj.setCliente(obj.getCliente());
+        newObj.getQuarto().setDisponibilidadeDiaria(false);
     }
 
+    public boolean isValid(Reserva obj) {
+        return true;
+    }
 
 
 }

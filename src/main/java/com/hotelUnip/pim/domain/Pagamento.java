@@ -1,6 +1,7 @@
 package com.hotelUnip.pim.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.hotelUnip.pim.domain.enums.EstadoPagamento;
 
@@ -20,8 +21,10 @@ public abstract class Pagamento implements Serializable {
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "reserva_id")
     @MapsId
-    @JsonIgnore
+    @JsonManagedReference
     private Reserva reserva;
+
+
 
     public Pagamento() {
     }

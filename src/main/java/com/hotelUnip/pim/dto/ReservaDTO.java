@@ -3,6 +3,7 @@ package com.hotelUnip.pim.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hotelUnip.pim.domain.Reserva;
+import com.hotelUnip.pim.domain.enums.EstadoPagamento;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
@@ -26,6 +27,7 @@ public class ReservaDTO implements Serializable {
     @NotNull
     private Integer quarto;
 
+    private double valor;
 
 
     public ReservaDTO() {
@@ -38,6 +40,7 @@ public class ReservaDTO implements Serializable {
         tempoEstadia = obj.getTempoEstadia();
         cliente = obj.getCliente().getId();
         quarto = obj.getQuarto().getId();
+        valor = obj.getValor();
     }
 
     public Integer getId() {
@@ -87,6 +90,8 @@ public class ReservaDTO implements Serializable {
     public void setQuarto(Integer quarto) {
         this.quarto = quarto;
     }
+
+
 }
 
 
