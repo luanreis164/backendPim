@@ -18,6 +18,7 @@ public class ProdConfig {
     @Autowired
     private DBService dbService;
 
+
     @Bean
     public EmailService emailService(){
     return new SmtpEmailService();

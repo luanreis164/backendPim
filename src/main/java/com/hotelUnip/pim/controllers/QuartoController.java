@@ -26,6 +26,7 @@ public class QuartoController {
         Quarto obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
+
     @GetMapping
     public ResponseEntity<List<Quarto>> findAll(){
         List<Quarto> lista = service.findAll();

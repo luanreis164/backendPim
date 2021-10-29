@@ -35,8 +35,7 @@ public class QuartoService {
     }
 
     public List<Quarto> findAll(){
-      List<Quarto> list = repo.findAll();
-      return list;
+        return repo.findAll();
 
     }
     @Transactional
