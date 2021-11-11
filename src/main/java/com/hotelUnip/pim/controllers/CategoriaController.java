@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
@@ -72,6 +73,14 @@ public class CategoriaController {
         Page<Categoria> list = service.findPage(page,linesPerPage,orderBy,direction);
         Page<CategoriaDTO> listDto = list.map(obj -> new CategoriaDTO(obj));
         return ResponseEntity.ok().body(listDto);
+
+    }
+
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PostMapping(value = "/picture/{id}")
+    public ResponseEntity<Void> uploadCategoriaPicture(@RequestParam(name = "file") MultipartFile multipartFile,@PathVariable Integer id){
+        URI uri = service.uploadCategoriaPicture(multipartFile,id);
+        return ResponseEntity.created(uri).build();
 
     }
 

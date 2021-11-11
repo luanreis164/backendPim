@@ -20,6 +20,8 @@ public class Categoria implements Serializable {
     @OneToMany(mappedBy = "categoria")
     private List<Quarto> quartos = new ArrayList<>();
 
+    private String imageUrl;
+
     // CONSTRUTORES ---------------------
 
     public Categoria() {
@@ -63,6 +65,14 @@ public class Categoria implements Serializable {
 
     public void setQuartos(List<Quarto> quartos) {
         this.quartos = quartos;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 
     // HASHCODE EQUALS --------------
