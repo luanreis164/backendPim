@@ -52,7 +52,7 @@ public class S3Service {
             meta.setContentType(contentType);
             LOG.info("Iniciando upload");
             s3Client.putObject(bucketName,fileName,is,meta);
-            LOG.info("Upload finalizado");
+            LOG.info("Upload concluido");
 
                return s3Client.getUrl(bucketName,fileName).toURI();
         } catch (URISyntaxException e){
