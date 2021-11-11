@@ -1,5 +1,7 @@
 package com.hotelUnip.pim.domain;
 
+import com.sun.istack.Nullable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -20,6 +22,7 @@ public class Categoria implements Serializable {
     @OneToMany(mappedBy = "categoria")
     private List<Quarto> quartos = new ArrayList<>();
 
+    @Column
     private String imageUrl;
 
     // CONSTRUTORES ---------------------

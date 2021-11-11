@@ -70,7 +70,7 @@ public class QuartoService {
 
     public Quarto fromDto(QuartoDTO objDto){
         Categoria categoria =  categoriaRepository.getById(objDto.getCategoria());
-        Quarto quarto = new Quarto(objDto.getId(), objDto.getNumero(),objDto.getAndar(), categoria);
+        Quarto quarto = new Quarto(objDto.getId(), objDto.getNumero(),objDto.getAndar(), categoria, true);
         return quarto;
     }
 

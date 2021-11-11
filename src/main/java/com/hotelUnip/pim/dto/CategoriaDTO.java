@@ -19,6 +19,8 @@ public class CategoriaDTO implements Serializable {
     @NotNull
     private Double precoDiaria;
 
+    private String imageUrl;
+
     public CategoriaDTO() {
     }
 
@@ -26,6 +28,7 @@ public class CategoriaDTO implements Serializable {
         id = obj.getId();
         nome = obj.getNome();
         precoDiaria = obj.getPrecoDiaria();
+        imageUrl = obj.getImageUrl();
     }
 
     public Integer getId() {
@@ -50,5 +53,13 @@ public class CategoriaDTO implements Serializable {
 
     public void setPrecoDiaria(Double precoDiaria) {
         this.precoDiaria = precoDiaria;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

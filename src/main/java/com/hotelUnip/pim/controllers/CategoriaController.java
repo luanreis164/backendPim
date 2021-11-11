@@ -32,7 +32,7 @@ public class CategoriaController {
     @GetMapping
     public ResponseEntity<List<CategoriaDTO>> findAll(){
         List<Categoria> lista = service.findAll();
-        List<CategoriaDTO> listaDto = lista.stream().map(obj -> new CategoriaDTO(obj)).collect(Collectors.toList());
+        List<CategoriaDTO> listaDto = lista.stream().map(CategoriaDTO::new).collect(Collectors.toList());
         return ResponseEntity.ok().body(listaDto);
     }
 

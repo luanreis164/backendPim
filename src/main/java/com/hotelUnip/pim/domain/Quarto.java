@@ -39,11 +39,12 @@ public class Quarto implements Serializable {
         disponibilidadeDiaria = true;
     }
 
-    public Quarto(Integer id, Integer numero, Integer andar, Categoria categoria) {
+    public Quarto(Integer id, Integer numero, Integer andar, Categoria categoria, boolean disponibilidadeDiaria) {
         this.id = id;
         this.numero = numero;
         this.andar = andar;
         this.categoria = categoria;
+        this.disponibilidadeDiaria = true;
     }
 
 
