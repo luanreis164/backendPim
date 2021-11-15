@@ -1,4 +1,4 @@
-reate table categoria (
+ create table categoria (
        id  serial not null,
         descricao varchar(255),
         image_url varchar(255),
