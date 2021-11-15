@@ -69,7 +69,7 @@ public class CategoriaService {
     }
 
     public Categoria fromDto(CategoriaDTO objDto){
-        return new Categoria(objDto.getId(), objDto.getNome(),objDto.getPrecoDiaria());
+        return new Categoria(objDto.getId(), objDto.getNome(),objDto.getPrecoDiaria(),objDto.getDescricao());
     }
 
     private void updateData(Categoria newObj, Categoria obj){
@@ -92,6 +92,7 @@ public class CategoriaService {
         categoria.setPrecoDiaria(categoria.getPrecoDiaria());
         categoria.setQuartos(categoria.getQuartos());
         categoria.setImageUrl(uri.toString());
+        categoria.setDescricao(categoria.getDescricao());
 
         repo.save(categoria);
             return uri;

@@ -3,6 +3,8 @@ package com.hotelUnip.pim.controllers;
 import com.hotelUnip.pim.domain.Reserva;
 import com.hotelUnip.pim.dto.ReservaDTO;
 import com.hotelUnip.pim.services.ReservaService;
+import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
+import com.hotelUnip.pim.services.exceptions.FileException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +48,7 @@ public class ReservaController {
 
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);
@@ -64,14 +66,18 @@ public class ReservaController {
 
     }
 
-    @PreAuthorize("hasAnyRole('CLIENTE')")
+    @PreAuthorize("hasAnyRole('CLIENTE','FUNCIONARIO')")
     @PostMapping
     public ResponseEntity<Void> insert( @Valid @RequestBody ReservaDTO objDto){
         Reserva obj = service.fromDto(objDto);
-        obj = service.insert(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
-                .path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+      if(obj.getQuarto().isDisponibilidadeDiaria() == true) {
+          obj.getQuarto().setDisponibilidadeDiaria(false);
+          obj = service.insert(obj);
+          URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
+                  .path("/{id}").buildAndExpand(obj.getId()).toUri();
+          return ResponseEntity.created(uri).build();
+      }
+        throw new DataIntegrityException("Não é possivel reservar para este quarto no momento! Tente outro horário.");
 
     }
 

@@ -14,10 +14,10 @@ public class ReservaDTO implements Serializable {
     private Integer id;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Date dataChegada;
+    private Date dataReserva;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Date dataReserva;
+    private Date dataSaida;
 
     private Integer tempoEstadia;
 
@@ -35,8 +35,8 @@ public class ReservaDTO implements Serializable {
 
     public ReservaDTO(Reserva obj) {
         id = obj.getId();
-        dataChegada = obj.getDataChegada();
         dataReserva = obj.getDataReserva();
+        dataSaida = obj.getDataSaida();
         tempoEstadia = obj.getTempoEstadia();
         cliente = obj.getCliente().getId();
         quarto = obj.getQuarto().getId();
@@ -51,13 +51,6 @@ public class ReservaDTO implements Serializable {
         this.id = id;
     }
 
-    public Date getDataChegada() {
-        return dataChegada;
-    }
-
-    public void setDataChegada(Date dataChegada) {
-        this.dataChegada = dataChegada;
-    }
 
     public Date getDataReserva() {
         return dataReserva;
@@ -65,6 +58,14 @@ public class ReservaDTO implements Serializable {
 
     public void setDataReserva(Date dataReserva) {
         this.dataReserva = dataReserva;
+    }
+
+    public Date getDataSaida() {
+        return dataSaida;
+    }
+
+    public void setDataSaida(Date dataSaida) {
+        this.dataSaida = dataSaida;
     }
 
     public Integer getTempoEstadia() {

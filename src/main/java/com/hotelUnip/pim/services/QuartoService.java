@@ -1,7 +1,9 @@
 package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.Categoria;
+import com.hotelUnip.pim.domain.Hospedagem;
 import com.hotelUnip.pim.domain.Quarto;
+import com.hotelUnip.pim.domain.Reserva;
 import com.hotelUnip.pim.dto.QuartoDTO;
 import com.hotelUnip.pim.repositories.CategoriaRepository;
 import com.hotelUnip.pim.repositories.QuartoRepository;
@@ -70,7 +72,7 @@ public class QuartoService {
 
     public Quarto fromDto(QuartoDTO objDto){
         Categoria categoria =  categoriaRepository.getById(objDto.getCategoria());
-        Quarto quarto = new Quarto(objDto.getId(), objDto.getNumero(),objDto.getAndar(), categoria, true);
+        Quarto quarto = new Quarto(objDto.getId(), objDto.getNumero(),objDto.getAndar(), categoria);
         return quarto;
     }
 
@@ -80,6 +82,7 @@ public class QuartoService {
         newObj.setCategoria(obj.getCategoria());
 
     }
+
 
 
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -27,8 +28,8 @@ public class Quarto implements Serializable {
     private List<Hospedagem> hospedagens;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "quarto")
-    private Reserva reserva;
+    @OneToMany(mappedBy = "quarto")
+    private List<Reserva> reservas = new ArrayList<>();
 
     private boolean disponibilidadeDiaria;
 
@@ -39,12 +40,12 @@ public class Quarto implements Serializable {
         disponibilidadeDiaria = true;
     }
 
-    public Quarto(Integer id, Integer numero, Integer andar, Categoria categoria, boolean disponibilidadeDiaria) {
+    public Quarto(Integer id, Integer numero, Integer andar, Categoria categoria) {
         this.id = id;
         this.numero = numero;
         this.andar = andar;
         this.categoria = categoria;
-        this.disponibilidadeDiaria = true;
+        disponibilidadeDiaria = true;
     }
 
 
@@ -90,12 +91,12 @@ public class Quarto implements Serializable {
         this.hospedagens = hospedagens;
     }
 
-    public Reserva getReserva() {
-        return reserva;
+    public List<Reserva> getReservas() {
+        return reservas;
     }
 
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
     }
 
     public boolean isDisponibilidadeDiaria() {

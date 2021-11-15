@@ -45,6 +45,17 @@ public class QuartoController {
     }
 
     @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PutMapping(value = "/{id}/liberar")
+    public ResponseEntity<Void> liberar(@PathVariable Integer id){
+        Quarto obj = service.find(id);
+        obj.setDisponibilidadeDiaria(true);
+        obj.setId(id);
+        obj = service.update(obj);
+        return ResponseEntity.noContent().build();
+
+    }
+
+    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);

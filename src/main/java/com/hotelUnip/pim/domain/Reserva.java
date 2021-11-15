@@ -19,17 +19,17 @@ public class Reserva implements Serializable{
     private Integer id;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Date dataChegada;
+    private Date dataReserva;
 
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private Date dataReserva;
+    private Date dataSaida;
 
     private Integer tempoEstadia;
 
     private double valor;
 
     @JsonManagedReference
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
@@ -43,7 +43,7 @@ public class Reserva implements Serializable{
     private Pagamento pagamento;
 
 
-    @OneToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "quarto_id")
     private Quarto quarto;
 
@@ -54,10 +54,10 @@ public class Reserva implements Serializable{
     public Reserva() {
     }
 
-    public Reserva(Integer id, Date dataChegada, Date dataReserva, Integer tempoEstadia, Cliente cliente,Quarto quarto) {
+    public Reserva(Integer id, Date dataSaida, Date dataReserva, Integer tempoEstadia, Cliente cliente,Quarto quarto) {
         this.id = id;
-        this.dataChegada = dataChegada;
         this.dataReserva = dataReserva;
+        this.dataSaida = dataSaida;
         this.tempoEstadia = tempoEstadia;
         this.cliente = cliente;
         this.quarto = quarto;
@@ -74,13 +74,6 @@ public class Reserva implements Serializable{
         this.id = id;
     }
 
-    public Date getDataChegada() {
-        return dataChegada;
-    }
-
-    public void setDataChegada(Date dataChegada) {
-        this.dataChegada = dataChegada;
-    }
 
     public Date getDataReserva() {
         return dataReserva;
@@ -88,6 +81,14 @@ public class Reserva implements Serializable{
 
     public void setDataReserva(Date dataReserva) {
         this.dataReserva = dataReserva;
+    }
+
+    public Date getDataSaida() {
+        return dataSaida;
+    }
+
+    public void setDataSaida(Date dataSaida) {
+        this.dataSaida = dataSaida;
     }
 
     public Integer getTempoEstadia() {

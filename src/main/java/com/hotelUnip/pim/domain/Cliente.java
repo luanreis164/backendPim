@@ -6,16 +6,19 @@ import com.hotelUnip.pim.domain.enums.Perfil;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Cliente extends Pessoa {
 
 
     @JsonBackReference
-    @OneToOne(mappedBy = "cliente", cascade = CascadeType.ALL)
-    private Reserva reserva;
+    @OneToMany(mappedBy = "cliente",cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reserva> reservas =  new ArrayList<>();
 
 
 
@@ -33,11 +36,11 @@ public class Cliente extends Pessoa {
 
     // GETTER / SETTERS
 
-    public Reserva getReserva() {
-        return reserva;
+    public List<Reserva> getReservas() {
+        return reservas;
     }
 
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
+    public void setReservas(List<Reserva> reservas) {
+        this.reservas = reservas;
     }
 }

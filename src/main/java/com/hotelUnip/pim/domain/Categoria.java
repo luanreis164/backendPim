@@ -25,15 +25,18 @@ public class Categoria implements Serializable {
     @Column
     private String imageUrl;
 
+    private String descricao;
+
     // CONSTRUTORES ---------------------
 
     public Categoria() {
     }
 
-    public Categoria(Integer id, String nome, Double precoDiaria) {
+    public Categoria(Integer id, String nome, Double precoDiaria,String descricao) {
         this.id = id;
         this.nome = nome;
         this.precoDiaria = precoDiaria;
+        this.descricao = descricao;
     }
 
     // GETTER / SETTERS --------------------------------
@@ -76,6 +79,14 @@ public class Categoria implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     // HASHCODE EQUALS --------------

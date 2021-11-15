@@ -14,6 +14,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,20 +91,20 @@ public class ReservaService {
     public Reserva fromDto(ReservaDTO objDto) {
         Cliente cliente = clienteRepository.getById(objDto.getCliente());
         Quarto quarto = quartoRepository.getById(objDto.getQuarto());
-        return new Reserva(objDto.getId(), objDto.getDataChegada(), objDto.getDataReserva(), objDto.getTempoEstadia(), cliente, quarto);
+        return new Reserva(objDto.getId(), objDto.getDataReserva(),objDto.getDataSaida(), objDto.getTempoEstadia(), cliente, quarto);
     }
 
     private void updateData(Reserva newObj, Reserva obj) {
-        newObj.setDataChegada(obj.getDataChegada());
         newObj.setDataReserva(obj.getDataReserva());
+        newObj.setDataSaida(obj.getDataSaida());
         newObj.setTempoEstadia(obj.getTempoEstadia());
         newObj.setCliente(obj.getCliente());
-        newObj.getQuarto().setDisponibilidadeDiaria(false);
     }
 
-    public boolean isValid(Reserva obj) {
-        return true;
-    }
+
+
+
+
 
 
 }
