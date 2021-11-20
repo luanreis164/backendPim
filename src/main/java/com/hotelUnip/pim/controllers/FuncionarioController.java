@@ -24,14 +24,14 @@ public class FuncionarioController {
     @Autowired
     private FuncionarioService service;
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Funcionario> find(@PathVariable Integer id){
         Funcionario obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @GetMapping
     public ResponseEntity<List<Funcionario>> findAll(){
         List<Funcionario> lista = service.findAll();

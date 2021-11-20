@@ -30,7 +30,7 @@ public class ReservaController {
         return ResponseEntity.ok().body(obj);
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @GetMapping
     public ResponseEntity<List<Reserva>> findAll(){
         List<Reserva> lista = service.findAll();
@@ -38,7 +38,7 @@ public class ReservaController {
 
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody ReservaDTO objDto, @PathVariable Integer id){
         Reserva obj = service.fromDto(objDto);

@@ -45,6 +45,8 @@ public class DBService {
     @Autowired
     private PagamentoRepository pagamentoRepository;
 
+    @Autowired
+    private ManutencaoRepository manutencaoRepository;
 
 
     public void instantiateTestDatabase() throws ParseException {
@@ -106,8 +108,9 @@ public class DBService {
         pagamentoRepository.saveAll(Arrays.asList(pgto1));
 
 
+        Manutencao manutencao1 = new Manutencao(null,"Ajuste no Teto do Quarto 501",sdf.parse("21/11/2021 12:11)"),sdf.parse("22/11/2021 14:44"),1.900);
 
-
+        manutencaoRepository.save(manutencao1);
 
     }
 }

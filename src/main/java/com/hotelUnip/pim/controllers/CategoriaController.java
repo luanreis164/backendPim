@@ -75,7 +75,7 @@ public class CategoriaController {
 
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @PostMapping(value = "/picture/{id}")
     public ResponseEntity<Void> uploadCategoriaPicture(@RequestParam(name = "file") MultipartFile multipartFile,@PathVariable Integer id){
         URI uri = service.uploadCategoriaPicture(multipartFile,id);

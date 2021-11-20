@@ -17,14 +17,14 @@ public class PessoaController {
     @Autowired
     private PessoaService service;
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Pessoa> find(@PathVariable Integer id){
         Pessoa obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @GetMapping
     public ResponseEntity<List<Pessoa>> findAll(){
         List<Pessoa> lista = service.findAll();

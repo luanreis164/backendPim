@@ -22,14 +22,14 @@ public class PagamentoController {
     @Autowired
     private PagamentoService service;
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Pagamento> find(@PathVariable Integer id){
         Pagamento obj = service.find(id);
         return ResponseEntity.ok().body(obj);
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @GetMapping
     public ResponseEntity<List<Pagamento>> findAll(){
         List<Pagamento> lista = service.findAll();
@@ -38,7 +38,7 @@ public class PagamentoController {
     }
 
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @PostMapping(value = "/cartao")
     public ResponseEntity<Void> insert( @Valid @RequestBody PagamentoComCartaoDTO objDto){
         Pagamento obj = service.fromDto(objDto);
@@ -50,7 +50,7 @@ public class PagamentoController {
 
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @PostMapping(value = "/boleto")
     public ResponseEntity<Void> insertBoleto( @Valid @RequestBody PagamentoComBoletoDTO objDto){
         Pagamento obj = service.boletoFromDto(objDto);
@@ -60,7 +60,7 @@ public class PagamentoController {
         return ResponseEntity.created(uri).build();
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> updateCartao(@Valid @RequestBody PagamentoComCartaoDTO objDto, @PathVariable Integer id){
         Pagamento obj = service.fromDto(objDto);

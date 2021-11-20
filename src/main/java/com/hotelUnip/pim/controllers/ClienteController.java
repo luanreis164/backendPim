@@ -29,7 +29,7 @@ public class ClienteController {
         return ResponseEntity.ok().body(obj);
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> findAll(){
         List<Cliente> lista = service.findAll();
@@ -47,7 +47,7 @@ public class ClienteController {
 
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);

@@ -22,7 +22,7 @@ public class HospedagemController {
     @Autowired
     private HospedagemService service;
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @GetMapping(value = "/{id}")
     public ResponseEntity<Hospedagem> find(@PathVariable Integer id){
         Hospedagem obj = service.find(id);
@@ -30,14 +30,14 @@ public class HospedagemController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     public ResponseEntity<List<Hospedagem>> findAll(){
         List<Hospedagem> lista = service.findAll();
         return ResponseEntity.ok().body(lista);
 
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody HospedagemDTO objDto, @PathVariable Integer id){
         Hospedagem obj = service.fromDto(objDto);
@@ -65,7 +65,7 @@ public class HospedagemController {
 
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @PostMapping
     public ResponseEntity<Void> insert( @Valid @RequestBody HospedagemDTO objDto){
         Hospedagem obj = service.fromDto(objDto);
