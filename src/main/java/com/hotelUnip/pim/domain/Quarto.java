@@ -1,5 +1,6 @@
 package com.hotelUnip.pim.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class Quarto implements Serializable {
     private Integer numero;
     private Integer andar;
 
-    @JsonIgnore
+
     @ManyToOne
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;

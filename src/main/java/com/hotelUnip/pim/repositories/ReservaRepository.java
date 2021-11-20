@@ -12,6 +12,6 @@ import java.util.Date;
 public interface ReservaRepository extends JpaRepository<Reserva,Integer> {
 
     @Transactional(readOnly = true)
-    Gerente findByDataReserva(Date dataReserva);
+    Reserva findByDataReserva(Date dataReserva);
 
 }

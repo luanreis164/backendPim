@@ -26,7 +26,7 @@ public class GerenteNewDTO implements Serializable {
     private String email;
 
     @NotEmpty(message = "Preenchimento obrigatório")
-    @Length(min = 4, max = 14,message = "O senha deve ter entre 4 e 14 caraceteres")
+    @Length(min = 4, max = 25,message = "O senha deve ter entre 4 e 25 caraceteres")
     private String senha;
 
 
@@ -36,7 +36,7 @@ public class GerenteNewDTO implements Serializable {
 
 
     @NotEmpty(message = "Preenchimento obrigatório")
-    @Length(min = 5, max = 25,message = "O tamanho deve ter entre 5 e 25 caraceteres")
+    @Length(min = 5, max = 45,message = "O tamanho deve ter entre 5 e 45 caraceteres")
     private String rua;
 
     @NotEmpty(message = "Preenchimento obrigatório")

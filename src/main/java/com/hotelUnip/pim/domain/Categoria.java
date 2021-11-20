@@ -1,5 +1,8 @@
 package com.hotelUnip.pim.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.sun.istack.Nullable;
 
 import javax.persistence.*;
@@ -19,6 +22,7 @@ public class Categoria implements Serializable {
     private String nome;
     private Double precoDiaria;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "categoria")
     private List<Quarto> quartos = new ArrayList<>();
 

@@ -30,10 +30,9 @@ public class CategoriaController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CategoriaDTO>> findAll(){
+    public ResponseEntity<List<Categoria>> findAll(){
         List<Categoria> lista = service.findAll();
-        List<CategoriaDTO> listaDto = lista.stream().map(CategoriaDTO::new).collect(Collectors.toList());
-        return ResponseEntity.ok().body(listaDto);
+        return ResponseEntity.ok().body(lista);
     }
 
     @PreAuthorize("hasAnyRole('GERENTE')")

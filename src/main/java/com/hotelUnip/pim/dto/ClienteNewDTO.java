@@ -34,7 +34,7 @@ public class ClienteNewDTO implements Serializable {
 
 
     @NotEmpty(message = "Preenchimento obrigatório")
-    @Length(min = 5, max = 25,message = "O tamanho deve ter entre 5 e 25 caraceteres")
+    @Length(min = 2, max = 45,message = "O tamanho deve ter entre 2 e 45 caraceteres")
     private String rua;
 
     @NotEmpty(message = "Preenchimento obrigatório")
@@ -54,7 +54,7 @@ public class ClienteNewDTO implements Serializable {
     private String cidade;
 
     @NotEmpty(message = "Preenchimento obrigatório")
-    @Length(min = 5, max = 25,message = "O tamanho deve ter entre 5 e 25 caraceteres")
+    @Length(min = 1, max = 25,message = "O tamanho máximo é de 25 caracteres")
     private String estado;
 
     @NotEmpty(message = "Preenchimento obrigatório")
