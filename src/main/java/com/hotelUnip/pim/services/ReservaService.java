@@ -1,7 +1,6 @@
 package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.*;
-import com.hotelUnip.pim.domain.enums.EstadoPagamento;
 import com.hotelUnip.pim.dto.ReservaDTO;
 import com.hotelUnip.pim.repositories.*;
 import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
@@ -13,8 +12,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -99,9 +96,17 @@ public class ReservaService {
         newObj.setDataSaida(obj.getDataSaida());
         newObj.setTempoEstadia(obj.getTempoEstadia());
         newObj.setCliente(obj.getCliente());
+        newObj.setStatusChecked(obj.isStatusChecked());
     }
 
+    private void invert(Reserva obj){
 
+       if (obj.isStatusChecked()){
+           obj.setStatusChecked(false);
+       }
+       else obj.setStatusChecked(true);
+
+    }
 
 
 

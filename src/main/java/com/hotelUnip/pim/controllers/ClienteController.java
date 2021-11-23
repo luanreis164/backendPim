@@ -37,6 +37,14 @@ public class ClienteController {
         return ResponseEntity.ok().body(listaDto);
     }
 
+    @PreAuthorize("hasAnyRole('CLIENTE','FUNCIONARIO')")
+    @GetMapping(value = "/email")
+    public ResponseEntity<ClienteDTO> find(@RequestParam(value = "value") String email){
+        Cliente obj = service.findByEmail(email);
+                return ResponseEntity.ok().body(new ClienteDTO(obj));
+
+    }
+
     @PreAuthorize("hasAnyRole('CLIENTE')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){

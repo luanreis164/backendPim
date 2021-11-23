@@ -32,13 +32,13 @@ public class Quarto implements Serializable {
     @OneToMany(mappedBy = "quarto")
     private List<Reserva> reservas = new ArrayList<>();
 
-    private boolean disponibilidadeDiaria;
+
 
 
     // CONSTRUTORES ---------------------
 
     public Quarto() {
-        disponibilidadeDiaria = true;
+
     }
 
     public Quarto(Integer id, Integer numero, Integer andar, Categoria categoria) {
@@ -46,7 +46,6 @@ public class Quarto implements Serializable {
         this.numero = numero;
         this.andar = andar;
         this.categoria = categoria;
-        disponibilidadeDiaria = true;
     }
 
 
@@ -100,13 +99,6 @@ public class Quarto implements Serializable {
         this.reservas = reservas;
     }
 
-    public boolean isDisponibilidadeDiaria() {
-        return disponibilidadeDiaria;
-    }
-
-    public void setDisponibilidadeDiaria(boolean disponibilidadeDiaria) {
-        this.disponibilidadeDiaria = disponibilidadeDiaria;
-    }
 
     // HASHCODE & EQUALS --------------------------------
     @Override

@@ -45,9 +45,18 @@ public class ClienteService {
     }
 
     public Cliente findByEmail(String email){
-        Optional<Cliente> obj = Optional.ofNullable(repo.findByEmail(email));
-        return obj.orElseThrow(()-> new ObjectNotFoundException(
-                "Cliente não encontrada! email: " + email + ",Tipo: " + Cliente.class.getName()));
+
+        UserSS user = UserService.authenticated();
+        if(user == null){
+            throw new AuthorizationException("Acesso negado");
+        }
+
+        Cliente obj = repo.findByEmail(email);
+        if (obj == null){
+            throw  new ObjectNotFoundException("Cliente não encontrado! Id:" + user.getId()+ ", Tipo: " + Cliente.class.getName());
+        }
+        return obj;
+
     }
 
     public List<Cliente> findAll(){

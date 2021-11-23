@@ -41,6 +41,7 @@ public class ReservaDTO implements Serializable {
         cliente = obj.getCliente().getId();
         quarto = obj.getQuarto().getId();
         valor = obj.getValor();
+
     }
 
     public Integer getId() {

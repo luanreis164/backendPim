@@ -47,7 +47,7 @@ public class Reserva implements Serializable{
     @JoinColumn(name = "quarto_id")
     private Quarto quarto;
 
-
+    private boolean statusChecked;
 
     // CONSTRUTORES --------------------------------
 
@@ -62,6 +62,7 @@ public class Reserva implements Serializable{
         this.cliente = cliente;
         this.quarto = quarto;
         valor = setValor(valor);
+        this.statusChecked = statusChecked;
     }
 
     // GETTER / SETTERS --------------------------------
@@ -141,6 +142,13 @@ public class Reserva implements Serializable{
         return valor;
     }
 
+    public boolean isStatusChecked() {
+        return statusChecked;
+    }
+
+    public void setStatusChecked(boolean statusChecked) {
+        this.statusChecked = statusChecked;
+    }
 
     // HASHCODE & EQUALS --------------------------------
     @Override

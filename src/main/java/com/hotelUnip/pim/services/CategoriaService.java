@@ -8,6 +8,7 @@ import com.hotelUnip.pim.services.exceptions.AuthorizationException;
 import com.hotelUnip.pim.services.exceptions.DataIntegrityException;
 import com.hotelUnip.pim.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -15,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.image.BufferedImage;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -28,6 +30,13 @@ public class CategoriaService {
 
     @Autowired
     private S3Service s3Service;
+
+    @Value("${img.prefix.cat.picture}")
+    private String prefix;
+
+
+    @Autowired
+    private ImageService imageService;
 
     public Categoria find(Integer id){
         Optional<Categoria> obj = repo.findById(id);
@@ -83,18 +92,21 @@ public class CategoriaService {
         if (user == null){
             throw new AuthorizationException("Acesso negado");
         }
-        URI uri = s3Service.uploadFile(multipartFile);
+
+        BufferedImage jpgImage = imageService.getJpgImageFromFile(multipartFile);
+        String fileName = prefix + obj + ".jpg";
 
         Categoria categoria = repo.getById(obj);
         categoria.setId(obj);
         categoria.setNome(categoria.getNome());
         categoria.setPrecoDiaria(categoria.getPrecoDiaria());
         categoria.setQuartos(categoria.getQuartos());
-        categoria.setImageUrl(uri.toString());
+        categoria.setImageUrl(fileName);
         categoria.setDescricao(categoria.getDescricao());
 
         repo.save(categoria);
-            return uri;
+        return s3Service.uploadFile(imageService.getInputStream(jpgImage,"jpg"),fileName,"image");
+
     }
 
 

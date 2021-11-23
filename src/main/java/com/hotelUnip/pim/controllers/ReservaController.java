@@ -48,6 +48,7 @@ public class ReservaController {
 
     }
 
+
     @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
@@ -70,16 +71,12 @@ public class ReservaController {
     @PostMapping
     public ResponseEntity<Void> insert( @Valid @RequestBody ReservaDTO objDto){
         Reserva obj = service.fromDto(objDto);
-      if(obj.getQuarto().isDisponibilidadeDiaria() == true) {
-          obj.getQuarto().setDisponibilidadeDiaria(false);
           obj = service.insert(obj);
           URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                   .path("/{id}").buildAndExpand(obj.getId()).toUri();
           return ResponseEntity.created(uri).build();
       }
-        throw new DataIntegrityException("Não é possivel reservar para este quarto no momento! Tente outro horário.");
 
-    }
 
 
 

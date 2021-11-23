@@ -3,6 +3,7 @@ package com.hotelUnip.pim.services;
 import com.hotelUnip.pim.services.exceptions.FileException;
 import org.apache.commons.io.FilenameUtils;
 import org.imgscalr.Scalr;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -13,6 +14,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+@Service
 public class ImageService {
 
     public BufferedImage getJpgImageFromFile(MultipartFile uploadedFile) {

@@ -54,7 +54,7 @@ public class FuncionarioNewDTO implements Serializable {
     private String cidade;
 
     @NotEmpty(message = "Preenchimento obrigatório")
-    @Length(min = 5, max = 25,message = "O tamanho deve ter entre 5 e 25 caraceteres")
+    @Length(min = 5, max = 45,message = "O tamanho deve ter entre 5 e 25 caraceteres")
     private String estado;
 
     @NotEmpty(message = "Preenchimento obrigatório")
