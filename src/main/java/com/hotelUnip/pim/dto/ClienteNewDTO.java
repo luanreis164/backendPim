@@ -1,6 +1,7 @@
 package com.hotelUnip.pim.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hotelUnip.pim.domain.Cliente;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CPF;
@@ -65,7 +66,7 @@ public class ClienteNewDTO implements Serializable {
     @Length(min = 10, max = 17,message = "O tamanho deve ter o formato correto")
     private String rg;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date dataNasc;
 
 

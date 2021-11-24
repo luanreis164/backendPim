@@ -136,7 +136,6 @@ alter table hospedagem
     create table quarto (
        id  serial not null,
         andar int4,
-        disponibilidade_diaria boolean not null,
         numero int4,
         categoria_id int4,
         primary key (id)
@@ -147,6 +146,7 @@ alter table hospedagem
        id  serial not null,
         data_reserva timestamp,
         data_saida timestamp,
+        status_checked boolean not null,
         tempo_estadia int4,
         valor float8 not null,
         cliente_id int4,
@@ -262,37 +262,37 @@ alter table hospedagem
     insert
     into
         quarto
-        (andar, categoria_id, disponibilidade_diaria, numero)
+        (andar, categoria_id, numero)
     values
-        (?, ?, ?, ?)
+        (?, ?, ?)
 
     insert
     into
         quarto
-        (andar, categoria_id, disponibilidade_diaria, numero)
+        (andar, categoria_id, numero)
     values
-        (?, ?, ?, ?)
+        (?, ?, ?)
 
     insert
     into
         reserva
-        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, tempo_estadia, valor)
+        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, status_checked, tempo_estadia, valor)
     values
-        (?, ?, ?, ?, ?, ?, ?)
+        (?, ?, ?, ?, ?, ?, ?, ?)
 
     insert
     into
         reserva
-        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, tempo_estadia, valor)
+        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, status_checked, tempo_estadia, valor)
     values
-        (?, ?, ?, ?, ?, ?, ?)
+        (?, ?, ?, ?, ?, ?, ?, ?)
 
     insert
     into
         reserva
-        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, tempo_estadia, valor)
+        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, status_checked, tempo_estadia, valor)
     values
-        (?, ?, ?, ?, ?, ?, ?)
+        (?, ?, ?, ?, ?, ?, ?, ?)
 
     insert
     into
@@ -348,13 +348,14 @@ alter table hospedagem
 
     select
         reserva0_.id as id1_7_5_,
-        reserva0_.cliente_id as cliente_6_7_5_,
+        reserva0_.cliente_id as cliente_7_7_5_,
         reserva0_.data_reserva as data_res2_7_5_,
         reserva0_.data_saida as data_sai3_7_5_,
-        reserva0_.hospedagem_id as hospedag7_7_5_,
-        reserva0_.quarto_id as quarto_i8_7_5_,
-        reserva0_.tempo_estadia as tempo_es4_7_5_,
-        reserva0_.valor as valor5_7_5_,
+        reserva0_.hospedagem_id as hospedag8_7_5_,
+        reserva0_.quarto_id as quarto_i9_7_5_,
+        reserva0_.status_checked as status_c4_7_5_,
+        reserva0_.tempo_estadia as tempo_es5_7_5_,
+        reserva0_.valor as valor6_7_5_,
         cliente1_.id as id2_5_0_,
         cliente1_.bairro as bairro3_5_0_,
         cliente1_.cep as cep4_5_0_,
@@ -378,22 +379,21 @@ alter table hospedagem
         hospedagem2_.valor as valor4_1_1_,
         quarto3_.id as id1_6_2_,
         quarto3_.andar as andar2_6_2_,
-        quarto3_.categoria_id as categori5_6_2_,
-        quarto3_.disponibilidade_diaria as disponib3_6_2_,
-        quarto3_.numero as numero4_6_2_,
+        quarto3_.categoria_id as categori4_6_2_,
+        quarto3_.numero as numero3_6_2_,
         reserva4_.id as id1_7_3_,
-        reserva4_.cliente_id as cliente_6_7_3_,
+        reserva4_.cliente_id as cliente_7_7_3_,
         reserva4_.data_reserva as data_res2_7_3_,
         reserva4_.data_saida as data_sai3_7_3_,
-        reserva4_.hospedagem_id as hospedag7_7_3_,
-        reserva4_.quarto_id as quarto_i8_7_3_,
-        reserva4_.tempo_estadia as tempo_es4_7_3_,
-        reserva4_.valor as valor5_7_3_,
+        reserva4_.hospedagem_id as hospedag8_7_3_,
+        reserva4_.quarto_id as quarto_i9_7_3_,
+        reserva4_.status_checked as status_c4_7_3_,
+        reserva4_.tempo_estadia as tempo_es5_7_3_,
+        reserva4_.valor as valor6_7_3_,
         quarto5_.id as id1_6_4_,
         quarto5_.andar as andar2_6_4_,
-        quarto5_.categoria_id as categori5_6_4_,
-        quarto5_.disponibilidade_diaria as disponib3_6_4_,
-        quarto5_.numero as numero4_6_4_
+        quarto5_.categoria_id as categori4_6_4_,
+        quarto5_.numero as numero3_6_4_
     from
         reserva reserva0_
     left outer join
@@ -417,9 +417,8 @@ alter table hospedagem
     select
         quarto0_.id as id1_6_0_,
         quarto0_.andar as andar2_6_0_,
-        quarto0_.categoria_id as categori5_6_0_,
-        quarto0_.disponibilidade_diaria as disponib3_6_0_,
-        quarto0_.numero as numero4_6_0_
+        quarto0_.categoria_id as categori4_6_0_,
+        quarto0_.numero as numero3_6_0_
     from
         quarto quarto0_
     where
@@ -457,16 +456,17 @@ alter table hospedagem
         perfis0_.pessoa_id=?
 
     select
-        reservas0_.cliente_id as cliente_6_7_0_,
+        reservas0_.cliente_id as cliente_7_7_0_,
         reservas0_.id as id1_7_0_,
         reservas0_.id as id1_7_1_,
-        reservas0_.cliente_id as cliente_6_7_1_,
+        reservas0_.cliente_id as cliente_7_7_1_,
         reservas0_.data_reserva as data_res2_7_1_,
         reservas0_.data_saida as data_sai3_7_1_,
-        reservas0_.hospedagem_id as hospedag7_7_1_,
-        reservas0_.quarto_id as quarto_i8_7_1_,
-        reservas0_.tempo_estadia as tempo_es4_7_1_,
-        reservas0_.valor as valor5_7_1_,
+        reservas0_.hospedagem_id as hospedag8_7_1_,
+        reservas0_.quarto_id as quarto_i9_7_1_,
+        reservas0_.status_checked as status_c4_7_1_,
+        reservas0_.tempo_estadia as tempo_es5_7_1_,
+        reservas0_.valor as valor6_7_1_,
         hospedagem1_.id as id1_1_2_,
         hospedagem1_.checkin as checkin2_1_2_,
         hospedagem1_.checkout as checkout3_1_2_,
@@ -497,27 +497,26 @@ alter table hospedagem
         funcionari2_.dtype as dtype1_5_3_,
         quarto3_.id as id1_6_4_,
         quarto3_.andar as andar2_6_4_,
-        quarto3_.categoria_id as categori5_6_4_,
-        quarto3_.disponibilidade_diaria as disponib3_6_4_,
-        quarto3_.numero as numero4_6_4_,
+        quarto3_.categoria_id as categori4_6_4_,
+        quarto3_.numero as numero3_6_4_,
         categoria4_.id as id1_0_5_,
         categoria4_.descricao as descrica2_0_5_,
         categoria4_.image_url as image_ur3_0_5_,
         categoria4_.nome as nome4_0_5_,
         categoria4_.preco_diaria as preco_di5_0_5_,
         reserva5_.id as id1_7_6_,
-        reserva5_.cliente_id as cliente_6_7_6_,
+        reserva5_.cliente_id as cliente_7_7_6_,
         reserva5_.data_reserva as data_res2_7_6_,
         reserva5_.data_saida as data_sai3_7_6_,
-        reserva5_.hospedagem_id as hospedag7_7_6_,
-        reserva5_.quarto_id as quarto_i8_7_6_,
-        reserva5_.tempo_estadia as tempo_es4_7_6_,
-        reserva5_.valor as valor5_7_6_,
+        reserva5_.hospedagem_id as hospedag8_7_6_,
+        reserva5_.quarto_id as quarto_i9_7_6_,
+        reserva5_.status_checked as status_c4_7_6_,
+        reserva5_.tempo_estadia as tempo_es5_7_6_,
+        reserva5_.valor as valor6_7_6_,
         quarto6_.id as id1_6_7_,
         quarto6_.andar as andar2_6_7_,
-        quarto6_.categoria_id as categori5_6_7_,
-        quarto6_.disponibilidade_diaria as disponib3_6_7_,
-        quarto6_.numero as numero4_6_7_,
+        quarto6_.categoria_id as categori4_6_7_,
+        quarto6_.numero as numero3_6_7_,
         pagamento7_.reserva_id as reserva_2_3_8_,
         pagamento7_.estado as estado3_3_8_,
         pagamento7_.data_pagamento as data_pag4_3_8_,
@@ -560,17 +559,17 @@ alter table hospedagem
         hospedagem0_.valor as valor4_1_5_,
         quarto1_.id as id1_6_0_,
         quarto1_.andar as andar2_6_0_,
-        quarto1_.categoria_id as categori5_6_0_,
-        quarto1_.disponibilidade_diaria as disponib3_6_0_,
-        quarto1_.numero as numero4_6_0_,
+        quarto1_.categoria_id as categori4_6_0_,
+        quarto1_.numero as numero3_6_0_,
         reserva2_.id as id1_7_1_,
-        reserva2_.cliente_id as cliente_6_7_1_,
+        reserva2_.cliente_id as cliente_7_7_1_,
         reserva2_.data_reserva as data_res2_7_1_,
         reserva2_.data_saida as data_sai3_7_1_,
-        reserva2_.hospedagem_id as hospedag7_7_1_,
-        reserva2_.quarto_id as quarto_i8_7_1_,
-        reserva2_.tempo_estadia as tempo_es4_7_1_,
-        reserva2_.valor as valor5_7_1_,
+        reserva2_.hospedagem_id as hospedag8_7_1_,
+        reserva2_.quarto_id as quarto_i9_7_1_,
+        reserva2_.status_checked as status_c4_7_1_,
+        reserva2_.tempo_estadia as tempo_es5_7_1_,
+        reserva2_.valor as valor6_7_1_,
         cliente3_.id as id2_5_2_,
         cliente3_.bairro as bairro3_5_2_,
         cliente3_.cep as cep4_5_2_,
@@ -594,9 +593,8 @@ alter table hospedagem
         hospedagem4_.valor as valor4_1_3_,
         quarto5_.id as id1_6_4_,
         quarto5_.andar as andar2_6_4_,
-        quarto5_.categoria_id as categori5_6_4_,
-        quarto5_.disponibilidade_diaria as disponib3_6_4_,
-        quarto5_.numero as numero4_6_4_
+        quarto5_.categoria_id as categori4_6_4_,
+        quarto5_.numero as numero3_6_4_
     from
         hospedagem hospedagem0_
     left outer join
@@ -650,17 +648,17 @@ alter table hospedagem
         hospedagen1_.valor as valor4_1_0_,
         quarto2_.id as id1_6_1_,
         quarto2_.andar as andar2_6_1_,
-        quarto2_.categoria_id as categori5_6_1_,
-        quarto2_.disponibilidade_diaria as disponib3_6_1_,
-        quarto2_.numero as numero4_6_1_,
+        quarto2_.categoria_id as categori4_6_1_,
+        quarto2_.numero as numero3_6_1_,
         reserva3_.id as id1_7_2_,
-        reserva3_.cliente_id as cliente_6_7_2_,
+        reserva3_.cliente_id as cliente_7_7_2_,
         reserva3_.data_reserva as data_res2_7_2_,
         reserva3_.data_saida as data_sai3_7_2_,
-        reserva3_.hospedagem_id as hospedag7_7_2_,
-        reserva3_.quarto_id as quarto_i8_7_2_,
-        reserva3_.tempo_estadia as tempo_es4_7_2_,
-        reserva3_.valor as valor5_7_2_,
+        reserva3_.hospedagem_id as hospedag8_7_2_,
+        reserva3_.quarto_id as quarto_i9_7_2_,
+        reserva3_.status_checked as status_c4_7_2_,
+        reserva3_.tempo_estadia as tempo_es5_7_2_,
+        reserva3_.valor as valor6_7_2_,
         cliente4_.id as id2_5_3_,
         cliente4_.bairro as bairro3_5_3_,
         cliente4_.cep as cep4_5_3_,
@@ -684,9 +682,8 @@ alter table hospedagem
         hospedagem5_.valor as valor4_1_4_,
         quarto6_.id as id1_6_5_,
         quarto6_.andar as andar2_6_5_,
-        quarto6_.categoria_id as categori5_6_5_,
-        quarto6_.disponibilidade_diaria as disponib3_6_5_,
-        quarto6_.numero as numero4_6_5_
+        quarto6_.categoria_id as categori4_6_5_,
+        quarto6_.numero as numero3_6_5_
     from
         pessoa funcionari0_
     left outer join
@@ -736,6 +733,7 @@ alter table hospedagem
         data_saida=?,
         hospedagem_id=?,
         quarto_id=?,
+        status_checked=?,
         tempo_estadia=?,
         valor=?
     where
@@ -747,47 +745,3 @@ alter table hospedagem
         (custos, data_fim, data_inicio, descricao)
     values
         (?, ?, ?, ?)
-
-    select
-        pessoa0_.id as id2_5_,
-        pessoa0_.bairro as bairro3_5_,
-        pessoa0_.cep as cep4_5_,
-        pessoa0_.cidade as cidade5_5_,
-        pessoa0_.cpf as cpf6_5_,
-        pessoa0_.data_nasc as data_nas7_5_,
-        pessoa0_.email as email8_5_,
-        pessoa0_.estado as estado9_5_,
-        pessoa0_.nome as nome10_5_,
-        pessoa0_.numero as numero11_5_,
-        pessoa0_.rg as rg12_5_,
-        pessoa0_.rua as rua13_5_,
-        pessoa0_.senha as senha14_5_,
-        pessoa0_.telefone as telefon15_5_,
-        pessoa0_.cargo as cargo16_5_,
-        pessoa0_.ctps as ctps17_5_,
-        pessoa0_.data_admissao as data_ad18_5_,
-        pessoa0_.matricula as matricu19_5_,
-        pessoa0_.salario as salario20_5_,
-        pessoa0_.bonificacao as bonific21_5_,
-        pessoa0_.dtype as dtype1_5_
-    from
-        pessoa pessoa0_
-    where
-        pessoa0_.email=?
-
-    select
-        perfis0_.pessoa_id as pessoa_i1_4_0_,
-        perfis0_.perfis as perfis2_4_0_
-    from
-        perfis perfis0_
-    where
-        perfis0_.pessoa_id=?
-
-    select
-        manutencao0_.id as id1_2_,
-        manutencao0_.custos as custos2_2_,
-        manutencao0_.data_fim as data_fim3_2_,
-        manutencao0_.data_inicio as data_ini4_2_,
-        manutencao0_.descricao as descrica5_2_
-    from
-        manutencao manutencao0_

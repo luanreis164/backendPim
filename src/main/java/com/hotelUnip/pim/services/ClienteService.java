@@ -107,9 +107,9 @@ public class ClienteService {
 
 
     public Cliente fromDto(ClienteDTO objDto){
-        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),pe.encode(objDto.getSenha()),null,
+        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),pe.encode(objDto.getSenha()), objDto.getCpf(),
                            objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
-                           objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(),null,null);
+                           objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(), objDto.getRg(), objDto.getDataNasc());
     }
     public Cliente fromDto(ClienteNewDTO objDto){
         return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(), pe.encode(objDto.getSenha()), objDto.getCpf(),
@@ -120,7 +120,7 @@ public class ClienteService {
     private void updateData(Cliente newObj, Cliente obj){
         newObj.setNome(obj.getNome());
         newObj.setEmail(obj.getEmail());
-        newObj.setSenha(obj.getSenha());
+        newObj.setCpf(obj.getCpf());
         newObj.setRua(obj.getRua());
         newObj.setBairro(obj.getBairro());
         newObj.setNumero(obj.getNumero());
@@ -128,6 +128,7 @@ public class ClienteService {
         newObj.setCidade(obj.getCidade());
         newObj.setEstado(obj.getEstado());
         newObj.setTelefone(obj.getTelefone());
+        newObj.setRg(obj.getRg());
     }
 
 

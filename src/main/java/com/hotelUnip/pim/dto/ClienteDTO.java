@@ -1,12 +1,15 @@
 package com.hotelUnip.pim.dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.hotelUnip.pim.domain.Cliente;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.Date;
 
 public class ClienteDTO implements Serializable {
 
@@ -20,8 +23,12 @@ public class ClienteDTO implements Serializable {
     @NotEmpty(message = "Preenchimento obrigatório")
     private String email;
 
-    @NotEmpty(message = "Preenchimento obrigatório")
+    @NotEmpty(message = "Preenchimento obrigatório!")
     private String senha;
+
+    @CPF
+    @NotEmpty(message = "Preenchimento obrigatório")
+    private String cpf;
 
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 5, max = 25,message = "O tamanho deve ter entre 5 e 25 caraceteres")
@@ -51,7 +58,10 @@ public class ClienteDTO implements Serializable {
     @Length(min = 10, max = 17,message = "O tamanho deve ter o formato correto")
     private String telefone;
 
+    private String rg;
 
+    @JsonFormat(pattern = "dd/MM/yyyy")
+    private Date dataNasc;
 
     public ClienteDTO() {
     }
@@ -61,6 +71,7 @@ public class ClienteDTO implements Serializable {
         nome = obj.getNome();
         email = obj.getEmail();
         senha = obj.getSenha();
+        cpf = obj.getCpf();
         rua = obj.getRua();
         bairro = obj.getBairro();
         numero = obj.getNumero();
@@ -68,6 +79,8 @@ public class ClienteDTO implements Serializable {
         cidade = obj.getCidade();
         estado = obj.getEstado();
         telefone = obj.getTelefone();
+        rg = obj.getRg();
+        dataNasc = obj.getDataNasc();
     }
 
 
@@ -149,6 +162,30 @@ public class ClienteDTO implements Serializable {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public Date getDataNasc() {
+        return dataNasc;
+    }
+
+    public void setDataNasc(Date dataNasc) {
+        this.dataNasc = dataNasc;
     }
 
     public String getSenha() {
