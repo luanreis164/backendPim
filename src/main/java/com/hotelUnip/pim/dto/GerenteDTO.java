@@ -23,9 +23,6 @@ public class GerenteDTO implements Serializable {
     @NotEmpty(message = "Preenchimento obrigatório!")
     private String email;
 
-    @NotEmpty(message = "Preenchimento obrigatório!")
-    private String senha;
-
     @NotEmpty(message = "Preenchimento obrigatório")
     @Length(min = 5, max = 25,message = "O tamanho deve ter entre 5 e 25 caraceteres")
     private String rua;
@@ -87,7 +84,6 @@ public class GerenteDTO implements Serializable {
         id = obj.getId();
         nome = obj.getNome();
         email = obj.getEmail();
-        senha = obj.getSenha();
         rua = obj.getRua();
         bairro = obj.getBairro();
         numero = obj.getNumero();
@@ -232,11 +228,5 @@ public class GerenteDTO implements Serializable {
         this.bonificacao = bonificacao;
     }
 
-    public String getSenha() {
-        return senha;
-    }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 }

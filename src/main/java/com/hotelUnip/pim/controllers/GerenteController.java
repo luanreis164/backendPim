@@ -1,5 +1,6 @@
 package com.hotelUnip.pim.controllers;
 import com.hotelUnip.pim.domain.Gerente;
+import com.hotelUnip.pim.dto.EmailDTO;
 import com.hotelUnip.pim.dto.GerenteDTO;
 import com.hotelUnip.pim.dto.GerenteNewDTO;
 import com.hotelUnip.pim.services.GerenteService;
@@ -74,8 +75,6 @@ public class GerenteController {
         return ResponseEntity.created(uri).build();
 
     }
-
-
 
 
 

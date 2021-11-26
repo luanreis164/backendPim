@@ -23,8 +23,6 @@ public class ClienteDTO implements Serializable {
     @NotEmpty(message = "Preenchimento obrigatório")
     private String email;
 
-    @NotEmpty(message = "Preenchimento obrigatório!")
-    private String senha;
 
     @CPF
     @NotEmpty(message = "Preenchimento obrigatório")
@@ -70,7 +68,6 @@ public class ClienteDTO implements Serializable {
         id = obj.getId();
         nome = obj.getNome();
         email = obj.getEmail();
-        senha = obj.getSenha();
         cpf = obj.getCpf();
         rua = obj.getRua();
         bairro = obj.getBairro();
@@ -187,12 +184,5 @@ public class ClienteDTO implements Serializable {
     public void setDataNasc(Date dataNasc) {
         this.dataNasc = dataNasc;
     }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+    
 }

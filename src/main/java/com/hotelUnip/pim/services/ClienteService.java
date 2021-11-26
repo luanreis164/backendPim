@@ -107,7 +107,7 @@ public class ClienteService {
 
 
     public Cliente fromDto(ClienteDTO objDto){
-        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),pe.encode(objDto.getSenha()), objDto.getCpf(),
+        return new Cliente(objDto.getId(), objDto.getNome(),objDto.getEmail(),null, objDto.getCpf(),
                            objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
                            objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(), objDto.getRg(), objDto.getDataNasc());
     }

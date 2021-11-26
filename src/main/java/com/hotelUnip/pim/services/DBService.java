@@ -67,8 +67,8 @@ public class DBService {
         Categoria cat1 = new Categoria(null,"Suite Royal 01",205.00,"Quarto com 2 camas e sacada");
         Categoria cat2 = new Categoria(null,"Suite Royal Deluxe 01",260.00,"Quarto com a Tigreza VIP");
 
-        Quarto quarto1 = new Quarto(null,11,1,cat1);
-        Quarto quarto2 = new Quarto(null,12,1,cat2);
+        Quarto quarto1 = new Quarto(null,"11",1,cat1);
+        Quarto quarto2 = new Quarto(null,"12",1,cat2);
 
         quarto1.setCategoria(cat1);
         quarto2.setCategoria(cat2);

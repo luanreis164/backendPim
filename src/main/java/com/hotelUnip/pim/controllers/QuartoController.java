@@ -1,4 +1,5 @@
 package com.hotelUnip.pim.controllers;
+import com.hotelUnip.pim.controllers.utils.URL;
 import com.hotelUnip.pim.domain.Quarto;
 import com.hotelUnip.pim.dto.QuartoDTO;
 import com.hotelUnip.pim.services.QuartoService;
@@ -43,7 +44,20 @@ public class QuartoController {
         return ResponseEntity.noContent().build();
 
     }
+    @GetMapping(value = "/busca")
+    public ResponseEntity<Page<QuartoDTO>> findPage(
+            @RequestParam(value = "numero",defaultValue = "") String numero,
+            @RequestParam(value = "categoria",defaultValue = "") Integer categoria,
+            @RequestParam(value = "page",defaultValue = "0") Integer page,
+            @RequestParam(value = "linesPerPage",defaultValue = "24")Integer linesPerPage,
+            @RequestParam(value = "orderBy",defaultValue = "andar")String orderBy,
+            @RequestParam(value = "direction",defaultValue = "ASC")String direction){
+        String numeroDecoded = URL.decodeParam(numero);
+        Page<Quarto> list = service.search(numeroDecoded,categoria,page,linesPerPage,orderBy,direction);
+        Page<QuartoDTO> listDto = list.map(obj -> new QuartoDTO(obj));
+        return ResponseEntity.ok().body(listDto);
 
+    }
 
     @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @DeleteMapping(value = "/{id}")
@@ -56,7 +70,7 @@ public class QuartoController {
     @GetMapping(value = "/page")
     public ResponseEntity<Page<QuartoDTO>> findPage(@RequestParam(value = "page",defaultValue = "0") Integer page,
                                                      @RequestParam(value = "linesPerPage",defaultValue = "24")Integer linesPerPage,
-                                                     @RequestParam(value = "orderBy",defaultValue = "nome")String orderBy,
+                                                     @RequestParam(value = "orderBy",defaultValue = "andar")String orderBy,
                                                      @RequestParam(value = "direction",defaultValue = "ASC")String direction){
         Page<Quarto> list = service.findPage(page,linesPerPage,orderBy,direction);
         Page<QuartoDTO> listDto = list.map(obj -> new QuartoDTO(obj));

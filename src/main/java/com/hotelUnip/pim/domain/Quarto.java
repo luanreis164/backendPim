@@ -16,7 +16,8 @@ public class Quarto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private Integer numero;
+    private String numero;
+
     private Integer andar;
 
 
@@ -41,7 +42,7 @@ public class Quarto implements Serializable {
 
     }
 
-    public Quarto(Integer id, Integer numero, Integer andar, Categoria categoria) {
+    public Quarto(Integer id, String numero, Integer andar, Categoria categoria) {
         this.id = id;
         this.numero = numero;
         this.andar = andar;
@@ -59,11 +60,11 @@ public class Quarto implements Serializable {
         this.id = id;
     }
 
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

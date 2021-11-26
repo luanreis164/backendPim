@@ -3,6 +3,7 @@ package com.hotelUnip.pim.dto;
 
 import com.hotelUnip.pim.domain.Quarto;
 
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
@@ -10,8 +11,8 @@ public class QuartoDTO implements Serializable {
 
     private Integer id;
 
-    @NotNull(message = "Preenchimento obrigatório")
-    private Integer numero;
+    @NotEmpty(message = "Preenchimento obrigatório")
+    private String numero;
 
     @NotNull(message = "Preenchimento obrigatório")
     private Integer andar;
@@ -38,11 +39,11 @@ public class QuartoDTO implements Serializable {
         this.id = id;
     }
 
-    public Integer getNumero() {
+    public String getNumero() {
         return numero;
     }
 
-    public void setNumero(Integer numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

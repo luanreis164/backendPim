@@ -45,7 +45,7 @@ public class ClienteController {
 
     }
 
-    @PreAuthorize("hasAnyRole('CLIENTE')")
+    @PreAuthorize("hasAnyRole('CLIENTE','FUNCIONARIO')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody ClienteDTO objDto, @PathVariable Integer id){
         Cliente obj = service.fromDto(objDto);

@@ -1,5 +1,6 @@
 package com.hotelUnip.pim.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -21,7 +22,7 @@ public abstract class Pagamento implements Serializable {
     @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "reserva_id")
     @MapsId
-    @JsonManagedReference
+    @JsonBackReference
     private Reserva reserva;
 
 

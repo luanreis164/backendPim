@@ -1,7 +1,9 @@
 package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.Cliente;
+import com.hotelUnip.pim.domain.Gerente;
 import com.hotelUnip.pim.repositories.ClienteRepository;
+import com.hotelUnip.pim.repositories.GerenteRepository;
 import com.hotelUnip.pim.services.exceptions.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,6 +16,9 @@ public class AuthService {
 
     @Autowired
     private ClienteRepository clienteRepository;
+
+    @Autowired
+    private GerenteRepository gerenteRepository;
 
     @Autowired
     private EmailService emailService;
@@ -33,6 +38,15 @@ public class AuthService {
 
         clienteRepository.save(cliente);
         emailService.sendNewPasswordEmail(cliente,newPass);
+
+    }
+
+    public void sendFileEmail(String email){
+        Gerente gerente = gerenteRepository.findByEmail(email);
+        if(gerente == null){
+            throw new ObjectNotFoundException("Email não encontrado");
+        }
+        emailService.sendFileEmail(gerente,email);
 
     }
 

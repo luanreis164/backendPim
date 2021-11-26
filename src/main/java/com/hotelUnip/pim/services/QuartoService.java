@@ -1,9 +1,7 @@
 package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.Categoria;
-import com.hotelUnip.pim.domain.Hospedagem;
 import com.hotelUnip.pim.domain.Quarto;
-import com.hotelUnip.pim.domain.Reserva;
 import com.hotelUnip.pim.dto.QuartoDTO;
 import com.hotelUnip.pim.repositories.CategoriaRepository;
 import com.hotelUnip.pim.repositories.QuartoRepository;
@@ -34,6 +32,13 @@ public class QuartoService {
         Optional<Quarto> obj = repo.findById(id);
         return obj.orElseThrow(()-> new ObjectNotFoundException(
                 "Quarto não encontrado! Id: " + id + ",Tipo: " + Quarto.class.getName()));
+    }
+
+    public Page<Quarto> search(String numero,Integer cat,Integer page, Integer linesPerPage, String orderBy, String direction){
+        PageRequest pageRequest = PageRequest.of(page,linesPerPage, Sort.Direction.valueOf(direction),orderBy);
+        Optional<Categoria> categoria = categoriaRepository.findById(cat);
+        return repo.findDistinctByNumeroContainingAndCategoria(numero,categoria,pageRequest);
+
     }
 
     public List<Quarto> findAll(){

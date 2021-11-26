@@ -80,7 +80,7 @@ public class GerenteService {
 
 
     public Gerente fromDto(GerenteDTO objDto){
-        return new Gerente(objDto.getId(), objDto.getNome(),objDto.getEmail(),pe.encode(objDto.getSenha()),null,
+        return new Gerente(objDto.getId(), objDto.getNome(),objDto.getEmail(),null,null,
                 objDto.getRua(),objDto.getBairro(),objDto.getNumero(),
                 objDto.getCep(),objDto.getCidade(),objDto.getEstado(), objDto.getTelefone(),null,null,objDto.getMatricula(),
                 objDto.getCtps(),objDto.getDataAdmissao(),objDto.getCargo(),objDto.getSalario(), objDto.getBonificacao());

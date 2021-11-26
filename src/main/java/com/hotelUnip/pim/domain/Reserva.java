@@ -38,7 +38,7 @@ public class Reserva implements Serializable{
     @JoinColumn(name = "hospedagem_id")
     private Hospedagem hospedagem;
 
-    @JsonBackReference
+    @JsonManagedReference
     @OneToOne(mappedBy = "reserva")
     private Pagamento pagamento;
 
@@ -54,7 +54,7 @@ public class Reserva implements Serializable{
     public Reserva() {
     }
 
-    public Reserva(Integer id, Date dataSaida, Date dataReserva, Integer tempoEstadia, Cliente cliente,Quarto quarto) {
+    public Reserva(Integer id, Date dataReserva, Date dataSaida, Integer tempoEstadia, Cliente cliente,Quarto quarto) {
         this.id = id;
         this.dataReserva = dataReserva;
         this.dataSaida = dataSaida;
