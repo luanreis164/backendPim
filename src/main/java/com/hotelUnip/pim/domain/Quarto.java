@@ -25,9 +25,6 @@ public class Quarto implements Serializable {
     @JoinColumn(name = "categoria_id")
     private Categoria categoria;
 
-    @OneToMany(mappedBy = "quarto")
-    @JsonIgnore
-    private List<Hospedagem> hospedagens;
 
     @JsonIgnore
     @OneToMany(mappedBy = "quarto")
@@ -84,13 +81,6 @@ public class Quarto implements Serializable {
         this.categoria = categoria;
     }
 
-    public List<Hospedagem> getHospedagens() {
-        return hospedagens;
-    }
-
-    public void setHospedagens(List<Hospedagem> hospedagens) {
-        this.hospedagens = hospedagens;
-    }
 
     public List<Reserva> getReservas() {
         return reservas;

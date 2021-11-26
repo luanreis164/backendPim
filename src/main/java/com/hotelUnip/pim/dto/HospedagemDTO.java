@@ -27,8 +27,6 @@ public class HospedagemDTO implements Serializable {
     @NotNull
     private Integer reservaId;
 
-    @NotNull
-    private Integer quartoId;
 
     public HospedagemDTO() {
     }
@@ -40,7 +38,6 @@ public class HospedagemDTO implements Serializable {
         valor = obj.getValor();
         funcionarioId = obj.getFuncionario().getId();
         reservaId = obj.getReserva().getId();
-        quartoId = obj.getQuarto().getId();
     }
 
 
@@ -92,13 +89,6 @@ public class HospedagemDTO implements Serializable {
         this.reservaId = reservaId;
     }
 
-    public Integer getQuartoId() {
-        return quartoId;
-    }
-
-    public void setQuartoId(Integer quartoId) {
-        this.quartoId = quartoId;
-    }
 }
 
 

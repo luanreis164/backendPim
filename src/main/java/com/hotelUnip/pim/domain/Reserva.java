@@ -47,7 +47,7 @@ public class Reserva implements Serializable{
     @JoinColumn(name = "quarto_id")
     private Quarto quarto;
 
-    private boolean statusChecked;
+    private boolean statusChecked ;
 
     // CONSTRUTORES --------------------------------
 

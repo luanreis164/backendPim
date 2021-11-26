@@ -32,9 +32,7 @@ public class Hospedagem implements Serializable {
     private Reserva reserva;
 
 
-    @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "quarto_id")
-    private Quarto quarto;
+
 
 
     // CONSTRUTORES ---------------------
@@ -43,14 +41,13 @@ public class Hospedagem implements Serializable {
     }
 
     public Hospedagem(Integer id, Date checkin, Date checkout, Double valor,
-                      Funcionario funcionario,Reserva reserva,Quarto quarto) {
+                      Funcionario funcionario,Reserva reserva) {
         this.id = id;
         this.checkin = checkin;
         this.checkout = checkout;
         this.valor = valor;
         this.funcionario = funcionario;
         this.reserva = reserva;
-        this.quarto = quarto;
 
 
     }
@@ -105,13 +102,6 @@ public class Hospedagem implements Serializable {
         this.reserva = reserva;
     }
 
-    public Quarto getQuarto() {
-        return quarto;
-    }
-
-    public void setQuarto(Quarto quarto) {
-        this.quarto = quarto;
-    }
 
 
     // HASHCODE & EQUALS -----------------------

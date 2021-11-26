@@ -50,6 +50,17 @@ public class ReservaController {
 
 
     @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
+    @PutMapping(value = "/check/{id}")
+    public ResponseEntity<Void> check(@Valid @RequestBody ReservaDTO objDto, @PathVariable Integer id){
+        Reserva obj = service.fromDto(objDto);
+        obj.setId(id);
+        obj = service.check(obj);
+        return ResponseEntity.noContent().build();
+
+    }
+
+
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);

@@ -88,8 +88,7 @@ public class HospedagemService {
     public Hospedagem fromDto(HospedagemDTO objDto){
         Funcionario funcionario =  funcionarioRepository.getById(objDto.getFuncionarioId());
         Reserva reserva =  reservaRepository.getById(objDto.getReservaId());
-        Quarto quarto = quartoRepository.getById(objDto.getQuartoId());
-        return new Hospedagem(objDto.getId(), objDto.getCheckin(),objDto.getCheckout(), objDto.getValor(),funcionario,reserva,quarto);
+        return new Hospedagem(objDto.getId(), objDto.getCheckin(),objDto.getCheckout(), objDto.getValor(),funcionario,reserva);
     }
 
     private void updateData(Hospedagem newObj, Hospedagem obj){
@@ -98,7 +97,6 @@ public class HospedagemService {
         newObj.setValor(obj.getValor());
         newObj.setFuncionario(obj.getFuncionario());
         newObj.setReserva(obj.getReserva());
-        newObj.setQuarto(obj.getQuarto());
     }
 
 

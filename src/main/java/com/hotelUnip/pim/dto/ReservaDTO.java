@@ -29,6 +29,7 @@ public class ReservaDTO implements Serializable {
 
     private double valor;
 
+    private boolean statusChecked;
 
     public ReservaDTO() {
     }
@@ -41,7 +42,7 @@ public class ReservaDTO implements Serializable {
         cliente = obj.getCliente().getId();
         quarto = obj.getQuarto().getId();
         valor = obj.getValor();
-
+        statusChecked = obj.isStatusChecked();
     }
 
     public Integer getId() {
@@ -93,7 +94,13 @@ public class ReservaDTO implements Serializable {
         this.quarto = quarto;
     }
 
+    public boolean isStatusChecked() {
+        return statusChecked;
+    }
 
+    public void setStatusChecked(boolean statusChecked) {
+        this.statusChecked = statusChecked;
+    }
 }
 
 

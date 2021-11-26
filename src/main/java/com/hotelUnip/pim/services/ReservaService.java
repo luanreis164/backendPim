@@ -67,6 +67,13 @@ public class ReservaService {
 
     }
 
+    public Reserva check(Reserva obj) {
+        Reserva newObj = find(obj.getId());
+        check(newObj, obj);
+        return repo.save(newObj);
+
+    }
+
 
     public void delete(Integer id) {
         find(id);
@@ -99,15 +106,25 @@ public class ReservaService {
         newObj.setStatusChecked(obj.isStatusChecked());
     }
 
-    private void invert(Reserva obj){
-
+    private boolean invert(Reserva obj){
+        boolean other = obj.isStatusChecked();
        if (obj.isStatusChecked()){
            obj.setStatusChecked(false);
+           return obj.isStatusChecked();
        }
        else obj.setStatusChecked(true);
-
+       return obj.isStatusChecked();
     }
 
+    public void check(Reserva newObj,Reserva obj) {
+
+            newObj.setDataReserva(obj.getDataReserva());
+            newObj.setDataSaida(obj.getDataSaida());
+            newObj.setTempoEstadia(obj.getTempoEstadia());
+            newObj.setCliente(obj.getCliente());
+            newObj.setStatusChecked(invert(obj));
+
+    }
 
 
 

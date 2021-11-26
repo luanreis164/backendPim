@@ -95,7 +95,7 @@ public class DBService {
 
         gerenteRepository.saveAll(Arrays.asList(gerente1));
 
-        Hospedagem hospedagem1 = new Hospedagem(null,sdf.parse("21/10/2021 12:45"),sdf.parse("22/10/2021 18:45"),1.750,funcionario1,reserva1,quarto1);
+        Hospedagem hospedagem1 = new Hospedagem(null,sdf.parse("21/10/2021 12:45"),sdf.parse("22/10/2021 18:45"),1.750,funcionario1,reserva1);
         funcionario1.setHospedagens(Arrays.asList(hospedagem1));
         reserva1.setHospedagem(hospedagem1);
 
