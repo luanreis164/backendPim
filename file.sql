@@ -1,59 +1,60 @@
-   alter table hospedagem 
+
+    alter table hospedagem
        drop constraint FK4reuno983puantin3n2jyv502
- 
-    
-    alter table hospedagem 
+
+
+    alter table hospedagem
        drop constraint FKkldpxp6h3yt7yuvw0boweetl
  
-    
-    alter table pagamento 
+
+    alter table pagamento
        drop constraint FK1solgom1n0mmdkesa8k4y3d8r
- 
-    
-    alter table perfis 
+
+
+    alter table perfis
        drop constraint FKlnesgnyiynjyqx8ks8cyhv6il
- 
-    
-    alter table quarto 
+
+
+    alter table quarto
        drop constraint FKo3wyrs6gfgy76ake7vyesomju
- 
-    
-    alter table reserva 
+
+
+    alter table reserva
        drop constraint FKgipueqcywuo5jet4qj5bgtd5k
- 
-    
-    alter table reserva 
+
+
+    alter table reserva
        drop constraint FKn3aymvpqwl44nqr9mosu0p4hq
- 
-    
-    alter table reserva 
+
+
+    alter table reserva
        drop constraint FKll90wdpmqcpwh6car9093ehxy
- 
-    
+
+
     drop table if exists categoria cascade
- 
-    
+
+
     drop table if exists hospedagem cascade
- 
-    
+
+
     drop table if exists manutencao cascade
- 
-    
+
+
     drop table if exists pagamento cascade
- 
-    
+
+
     drop table if exists perfis cascade
- 
-    
+
+
     drop table if exists pessoa cascade
- 
-    
+
+
     drop table if exists quarto cascade
- 
-    
+
+
     drop table if exists reserva cascade
- 
-    
+
+
     create table categoria (
        id  serial not null,
         descricao varchar(255),
@@ -62,8 +63,8 @@
         preco_diaria float8,
         primary key (id)
     )
- 
-    
+
+
     create table hospedagem (
        id  serial not null,
         checkin timestamp,
@@ -73,8 +74,8 @@
         reserva_id int4,
         primary key (id)
     )
- 
-    
+
+
     create table manutencao (
        id  serial not null,
         custos float8,
@@ -83,8 +84,8 @@
         descricao varchar(255),
         primary key (id)
     )
- 
-    
+
+
     create table pagamento (
        dtype varchar(31) not null,
         reserva_id int4 not null,
@@ -94,14 +95,14 @@
         numero_de_parcelas int4,
         primary key (reserva_id)
     )
- 
-    
+
+
     create table perfis (
        pessoa_id int4 not null,
         perfis int4
     )
- 
-    
+
+
     create table pessoa (
        dtype varchar(31) not null,
         id  serial not null,
@@ -126,8 +127,8 @@
         bonificacao float8,
         primary key (id)
     )
- 
-    
+
+
     create table quarto (
        id  serial not null,
         andar int4,
@@ -135,8 +136,8 @@
         categoria_id int4,
         primary key (id)
     )
- 
-    
+
+
     create table reserva (
        id  serial not null,
         data_reserva timestamp,
@@ -149,192 +150,192 @@
         quarto_id int4,
         primary key (id)
     )
- 
-    
-    alter table pessoa 
+
+
+    alter table pessoa
        add constraint UK_nlwiu48rutiltbnjle59krljo unique (cpf)
- 
-    
-    alter table pessoa 
+
+
+    alter table pessoa
        add constraint UK_mc87q8fpvldpdyfo9o5633o5l unique (email)
- 
-    
-    alter table hospedagem 
-       add constraint FK4reuno983puantin3n2jyv502 
-       foreign key (funcionario_id) 
+
+
+    alter table hospedagem
+       add constraint FK4reuno983puantin3n2jyv502
+       foreign key (funcionario_id)
        references pessoa
- 
-    
-    alter table hospedagem 
-       add constraint FKkldpxp6h3yt7yuvw0boweetl 
-       foreign key (reserva_id) 
+
+
+    alter table hospedagem
+       add constraint FKkldpxp6h3yt7yuvw0boweetl
+       foreign key (reserva_id)
        references reserva
- 
-    
-    alter table pagamento 
-       add constraint FK1solgom1n0mmdkesa8k4y3d8r 
-       foreign key (reserva_id) 
+
+
+    alter table pagamento
+       add constraint FK1solgom1n0mmdkesa8k4y3d8r
+       foreign key (reserva_id)
        references reserva
- 
-    
-    alter table perfis 
-       add constraint FKlnesgnyiynjyqx8ks8cyhv6il 
-       foreign key (pessoa_id) 
+
+
+    alter table perfis
+       add constraint FKlnesgnyiynjyqx8ks8cyhv6il
+       foreign key (pessoa_id)
        references pessoa
- 
-    
-    alter table quarto 
-       add constraint FKo3wyrs6gfgy76ake7vyesomju 
-       foreign key (categoria_id) 
+
+
+    alter table quarto
+       add constraint FKo3wyrs6gfgy76ake7vyesomju
+       foreign key (categoria_id)
        references categoria
- 
-    
-    alter table reserva 
-       add constraint FKgipueqcywuo5jet4qj5bgtd5k 
-       foreign key (cliente_id) 
+
+
+    alter table reserva
+       add constraint FKgipueqcywuo5jet4qj5bgtd5k
+       foreign key (cliente_id)
        references pessoa
- 
-    
-    alter table reserva 
-       add constraint FKn3aymvpqwl44nqr9mosu0p4hq 
-       foreign key (hospedagem_id) 
+
+
+    alter table reserva
+       add constraint FKn3aymvpqwl44nqr9mosu0p4hq
+       foreign key (hospedagem_id)
        references hospedagem
- 
-    
-    alter table reserva 
-       add constraint FKll90wdpmqcpwh6car9093ehxy 
-       foreign key (quarto_id) 
+
+
+    alter table reserva
+       add constraint FKll90wdpmqcpwh6car9093ehxy
+       foreign key (quarto_id)
        references quarto
- 
-    insert 
+
+    insert
     into
         pessoa
-        (bairro, cep, cidade, cpf, data_nasc, email, estado, nome, numero, rg, rua, senha, telefone, dtype) 
+        (bairro, cep, cidade, cpf, data_nasc, email, estado, nome, numero, rg, rua, senha, telefone, dtype)
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Cliente')
- 
-    insert 
+
+    insert
     into
         pessoa
-        (bairro, cep, cidade, cpf, data_nasc, email, estado, nome, numero, rg, rua, senha, telefone, dtype) 
+        (bairro, cep, cidade, cpf, data_nasc, email, estado, nome, numero, rg, rua, senha, telefone, dtype)
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Cliente')
- 
-    insert 
+
+    insert
     into
         perfis
-        (pessoa_id, perfis) 
+        (pessoa_id, perfis)
     values
         (?, ?)
- 
-    insert 
+
+    insert
     into
         perfis
-        (pessoa_id, perfis) 
+        (pessoa_id, perfis)
     values
         (?, ?)
- 
-    insert 
+
+    insert
     into
         categoria
-        (descricao, image_url, nome, preco_diaria) 
+        (descricao, image_url, nome, preco_diaria)
     values
         (?, ?, ?, ?)
- 
-    insert 
+
+    insert
     into
         categoria
-        (descricao, image_url, nome, preco_diaria) 
+        (descricao, image_url, nome, preco_diaria)
     values
         (?, ?, ?, ?)
- 
-    insert 
+
+    insert
     into
         quarto
-        (andar, categoria_id, numero) 
+        (andar, categoria_id, numero)
     values
         (?, ?, ?)
- 
-    insert 
+
+    insert
     into
         quarto
-        (andar, categoria_id, numero) 
+        (andar, categoria_id, numero)
     values
         (?, ?, ?)
- 
-    insert 
+
+    insert
     into
         reserva
-        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, status_checked, tempo_estadia, valor) 
+        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, status_checked, tempo_estadia, valor)
     values
         (?, ?, ?, ?, ?, ?, ?, ?)
- 
-    insert 
+
+    insert
     into
         reserva
-        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, status_checked, tempo_estadia, valor) 
+        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, status_checked, tempo_estadia, valor)
     values
         (?, ?, ?, ?, ?, ?, ?, ?)
- 
-    insert 
+
+    insert
     into
         reserva
-        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, status_checked, tempo_estadia, valor) 
+        (cliente_id, data_reserva, data_saida, hospedagem_id, quarto_id, status_checked, tempo_estadia, valor)
     values
         (?, ?, ?, ?, ?, ?, ?, ?)
- 
-    insert 
+
+    insert
     into
         pessoa
-        (bairro, cep, cidade, cpf, data_nasc, email, estado, nome, numero, rg, rua, senha, telefone, cargo, ctps, data_admissao, matricula, salario, dtype) 
+        (bairro, cep, cidade, cpf, data_nasc, email, estado, nome, numero, rg, rua, senha, telefone, cargo, ctps, data_admissao, matricula, salario, dtype)
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Funcionario')
- 
-    insert 
+
+    insert
     into
         perfis
-        (pessoa_id, perfis) 
+        (pessoa_id, perfis)
     values
         (?, ?)
- 
-    insert 
+
+    insert
     into
         pessoa
-        (bairro, cep, cidade, cpf, data_nasc, email, estado, nome, numero, rg, rua, senha, telefone, cargo, ctps, data_admissao, matricula, salario, bonificacao, dtype) 
+        (bairro, cep, cidade, cpf, data_nasc, email, estado, nome, numero, rg, rua, senha, telefone, cargo, ctps, data_admissao, matricula, salario, bonificacao, dtype)
     values
         (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Gerente')
- 
-    insert 
+
+    insert
     into
         perfis
-        (pessoa_id, perfis) 
+        (pessoa_id, perfis)
     values
         (?, ?)
- 
-    insert 
+
+    insert
     into
         perfis
-        (pessoa_id, perfis) 
+        (pessoa_id, perfis)
     values
         (?, ?)
- 
-    insert 
+
+    insert
     into
         hospedagem
-        (checkin, checkout, funcionario_id, reserva_id, valor) 
+        (checkin, checkout, funcionario_id, reserva_id, valor)
     values
         (?, ?, ?, ?, ?)
- 
+
     select
         pagamentoc0_.reserva_id as reserva_2_3_0_,
         pagamentoc0_.estado as estado3_3_0_,
-        pagamentoc0_.numero_de_parcelas as numero_d6_3_0_ 
+        pagamentoc0_.numero_de_parcelas as numero_d6_3_0_
     from
-        pagamento pagamentoc0_ 
+        pagamento pagamentoc0_
     where
-        pagamentoc0_.reserva_id=? 
+        pagamentoc0_.reserva_id=?
         and pagamentoc0_.dtype='PagamentoComCartao'
- 
+
     select
         reserva0_.id as id1_7_4_,
         reserva0_.cliente_id as cliente_7_7_4_,
@@ -377,65 +378,65 @@
         quarto4_.id as id1_6_3_,
         quarto4_.andar as andar2_6_3_,
         quarto4_.categoria_id as categori4_6_3_,
-        quarto4_.numero as numero3_6_3_ 
+        quarto4_.numero as numero3_6_3_
     from
-        reserva reserva0_ 
+        reserva reserva0_
     left outer join
-        pessoa cliente1_ 
-            on reserva0_.cliente_id=cliente1_.id 
+        pessoa cliente1_
+            on reserva0_.cliente_id=cliente1_.id
     left outer join
-        hospedagem hospedagem2_ 
-            on reserva0_.hospedagem_id=hospedagem2_.id 
+        hospedagem hospedagem2_
+            on reserva0_.hospedagem_id=hospedagem2_.id
     left outer join
-        reserva reserva3_ 
-            on hospedagem2_.reserva_id=reserva3_.id 
+        reserva reserva3_
+            on hospedagem2_.reserva_id=reserva3_.id
     left outer join
-        quarto quarto4_ 
-            on reserva3_.quarto_id=quarto4_.id 
+        quarto quarto4_
+            on reserva3_.quarto_id=quarto4_.id
     where
         reserva0_.id=?
- 
+
     select
         quarto0_.id as id1_6_0_,
         quarto0_.andar as andar2_6_0_,
         quarto0_.categoria_id as categori4_6_0_,
-        quarto0_.numero as numero3_6_0_ 
+        quarto0_.numero as numero3_6_0_
     from
-        quarto quarto0_ 
+        quarto quarto0_
     where
         quarto0_.id=?
- 
+
     select
         categoria0_.id as id1_0_0_,
         categoria0_.descricao as descrica2_0_0_,
         categoria0_.image_url as image_ur3_0_0_,
         categoria0_.nome as nome4_0_0_,
-        categoria0_.preco_diaria as preco_di5_0_0_ 
+        categoria0_.preco_diaria as preco_di5_0_0_
     from
-        categoria categoria0_ 
+        categoria categoria0_
     where
         categoria0_.id=?
- 
+
     select
         pagamento0_.reserva_id as reserva_2_3_0_,
         pagamento0_.estado as estado3_3_0_,
         pagamento0_.data_pagamento as data_pag4_3_0_,
         pagamento0_.data_vencimento as data_ven5_3_0_,
         pagamento0_.numero_de_parcelas as numero_d6_3_0_,
-        pagamento0_.dtype as dtype1_3_0_ 
+        pagamento0_.dtype as dtype1_3_0_
     from
-        pagamento pagamento0_ 
+        pagamento pagamento0_
     where
         pagamento0_.reserva_id=?
- 
+
     select
         perfis0_.pessoa_id as pessoa_i1_4_0_,
-        perfis0_.perfis as perfis2_4_0_ 
+        perfis0_.perfis as perfis2_4_0_
     from
-        perfis perfis0_ 
+        perfis perfis0_
     where
         perfis0_.pessoa_id=?
- 
+
     select
         reservas0_.cliente_id as cliente_7_7_0_,
         reservas0_.id as id1_7_0_,
@@ -498,30 +499,30 @@
         pagamento6_.data_pagamento as data_pag4_3_7_,
         pagamento6_.data_vencimento as data_ven5_3_7_,
         pagamento6_.numero_de_parcelas as numero_d6_3_7_,
-        pagamento6_.dtype as dtype1_3_7_ 
+        pagamento6_.dtype as dtype1_3_7_
     from
-        reserva reservas0_ 
+        reserva reservas0_
     left outer join
-        hospedagem hospedagem1_ 
-            on reservas0_.hospedagem_id=hospedagem1_.id 
+        hospedagem hospedagem1_
+            on reservas0_.hospedagem_id=hospedagem1_.id
     left outer join
-        pessoa funcionari2_ 
-            on hospedagem1_.funcionario_id=funcionari2_.id 
+        pessoa funcionari2_
+            on hospedagem1_.funcionario_id=funcionari2_.id
     left outer join
-        reserva reserva3_ 
-            on hospedagem1_.reserva_id=reserva3_.id 
+        reserva reserva3_
+            on hospedagem1_.reserva_id=reserva3_.id
     left outer join
-        quarto quarto4_ 
-            on reserva3_.quarto_id=quarto4_.id 
+        quarto quarto4_
+            on reserva3_.quarto_id=quarto4_.id
     left outer join
-        categoria categoria5_ 
-            on quarto4_.categoria_id=categoria5_.id 
+        categoria categoria5_
+            on quarto4_.categoria_id=categoria5_.id
     left outer join
-        pagamento pagamento6_ 
-            on reserva3_.id=pagamento6_.reserva_id 
+        pagamento pagamento6_
+            on reserva3_.id=pagamento6_.reserva_id
     where
         reservas0_.cliente_id=?
- 
+
     select
         hospedagem0_.id as id1_1_4_,
         hospedagem0_.checkin as checkin2_1_4_,
@@ -561,24 +562,24 @@
         quarto4_.id as id1_6_3_,
         quarto4_.andar as andar2_6_3_,
         quarto4_.categoria_id as categori4_6_3_,
-        quarto4_.numero as numero3_6_3_ 
+        quarto4_.numero as numero3_6_3_
     from
-        hospedagem hospedagem0_ 
+        hospedagem hospedagem0_
     left outer join
-        reserva reserva1_ 
-            on hospedagem0_.reserva_id=reserva1_.id 
+        reserva reserva1_
+            on hospedagem0_.reserva_id=reserva1_.id
     left outer join
-        pessoa cliente2_ 
-            on reserva1_.cliente_id=cliente2_.id 
+        pessoa cliente2_
+            on reserva1_.cliente_id=cliente2_.id
     left outer join
-        hospedagem hospedagem3_ 
-            on reserva1_.hospedagem_id=hospedagem3_.id 
+        hospedagem hospedagem3_
+            on reserva1_.hospedagem_id=hospedagem3_.id
     left outer join
-        quarto quarto4_ 
-            on reserva1_.quarto_id=quarto4_.id 
+        quarto quarto4_
+            on reserva1_.quarto_id=quarto4_.id
     where
         hospedagem0_.id=?
- 
+
     select
         funcionari0_.id as id2_5_5_,
         funcionari0_.bairro as bairro3_5_5_,
@@ -641,47 +642,47 @@
         quarto5_.id as id1_6_4_,
         quarto5_.andar as andar2_6_4_,
         quarto5_.categoria_id as categori4_6_4_,
-        quarto5_.numero as numero3_6_4_ 
+        quarto5_.numero as numero3_6_4_
     from
-        pessoa funcionari0_ 
+        pessoa funcionari0_
     left outer join
-        hospedagem hospedagen1_ 
-            on funcionari0_.id=hospedagen1_.funcionario_id 
+        hospedagem hospedagen1_
+            on funcionari0_.id=hospedagen1_.funcionario_id
     left outer join
-        reserva reserva2_ 
-            on hospedagen1_.reserva_id=reserva2_.id 
+        reserva reserva2_
+            on hospedagen1_.reserva_id=reserva2_.id
     left outer join
-        pessoa cliente3_ 
-            on reserva2_.cliente_id=cliente3_.id 
+        pessoa cliente3_
+            on reserva2_.cliente_id=cliente3_.id
     left outer join
-        hospedagem hospedagem4_ 
-            on reserva2_.hospedagem_id=hospedagem4_.id 
+        hospedagem hospedagem4_
+            on reserva2_.hospedagem_id=hospedagem4_.id
     left outer join
-        quarto quarto5_ 
-            on reserva2_.quarto_id=quarto5_.id 
+        quarto quarto5_
+            on reserva2_.quarto_id=quarto5_.id
     where
-        funcionari0_.id=? 
+        funcionari0_.id=?
         and funcionari0_.dtype in (
             'Funcionario', 'Gerente'
         )
- 
+
     select
         perfis0_.pessoa_id as pessoa_i1_4_0_,
-        perfis0_.perfis as perfis2_4_0_ 
+        perfis0_.perfis as perfis2_4_0_
     from
-        perfis perfis0_ 
+        perfis perfis0_
     where
         perfis0_.pessoa_id=?
- 
-    insert 
+
+    insert
     into
         pagamento
-        (estado, numero_de_parcelas, dtype, reserva_id) 
+        (estado, numero_de_parcelas, dtype, reserva_id)
     values
         (?, ?, 'PagamentoComCartao', ?)
- 
+
     update
-        reserva 
+        reserva
     set
         cliente_id=?,
         data_reserva=?,
@@ -690,13 +691,13 @@
         quarto_id=?,
         status_checked=?,
         tempo_estadia=?,
-        valor=? 
+        valor=?
     where
         id=?
- 
-    insert 
+
+    insert
     into
         manutencao
-        (custos, data_fim, data_inicio, descricao) 
+        (custos, data_fim, data_inicio, descricao)
     values
         (?, ?, ?, ?)
