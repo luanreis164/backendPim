@@ -55,7 +55,7 @@ public class ClienteController {
 
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
+    @PreAuthorize("hasAnyRole('CLIENTE','FUNCIONARIO')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);
