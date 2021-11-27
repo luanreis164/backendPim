@@ -29,7 +29,7 @@ public class ClienteController {
         return ResponseEntity.ok().body(obj);
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','CLIENTE')")
     @GetMapping
     public ResponseEntity<List<ClienteDTO>> findAll(){
         List<Cliente> lista = service.findAll();
