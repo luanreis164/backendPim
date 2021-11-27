@@ -2,9 +2,9 @@ package com.hotelUnip.pim.services;
 
 import com.hotelUnip.pim.domain.Cliente;
 import com.hotelUnip.pim.domain.Gerente;
-import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 
 public interface EmailService {
@@ -13,7 +13,7 @@ public interface EmailService {
 
      void sendNewPasswordEmail(Cliente cliente, String newPass);
 
-     void sendFileEmail(Gerente gerente, String file);
+     void sendFileEmail(Integer id, String msg);
 
 
 }

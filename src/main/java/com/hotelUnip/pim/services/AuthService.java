@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -41,12 +42,12 @@ public class AuthService {
 
     }
 
-    public void sendFileEmail(String email){
-        Gerente gerente = gerenteRepository.findByEmail(email);
+    public void sendFileEmail(Integer id,String msg){
+        Optional<Gerente> gerente = gerenteRepository.findById(id);
         if(gerente == null){
-            throw new ObjectNotFoundException("Email não encontrado");
+            throw new ObjectNotFoundException("ID não encontrado");
         }
-        emailService.sendFileEmail(gerente,email);
+        emailService.sendFileEmail(id,msg);
 
     }
 

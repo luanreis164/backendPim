@@ -3,6 +3,7 @@ import com.hotelUnip.pim.domain.Gerente;
 import com.hotelUnip.pim.dto.EmailDTO;
 import com.hotelUnip.pim.dto.GerenteDTO;
 import com.hotelUnip.pim.dto.GerenteNewDTO;
+import com.hotelUnip.pim.services.AuthService;
 import com.hotelUnip.pim.services.GerenteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +25,9 @@ public class GerenteController {
     @Autowired
     private GerenteService service;
 
+    @Autowired
+    private AuthService authService;
+
     @GetMapping(value = "/{id}")
     public ResponseEntity<Gerente> find(@PathVariable Integer id){
         Gerente obj = service.find(id);
@@ -43,6 +47,13 @@ public class GerenteController {
         Gerente obj = service.fromDto(objDto);
         obj.setId(id);
         obj = service.update(obj);
+        return ResponseEntity.noContent().build();
+
+    }
+
+    @RequestMapping(value = "/send/{id}",method = RequestMethod.POST)
+    public ResponseEntity<Void> send(@RequestBody String msg,@PathVariable Integer id){
+        authService.sendFileEmail(id,msg);
         return ResponseEntity.noContent().build();
 
     }

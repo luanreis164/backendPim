@@ -30,7 +30,7 @@ public class ReservaController {
         return ResponseEntity.ok().body(obj);
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','CLIENTE')")
     @GetMapping
     public ResponseEntity<List<Reserva>> findAll(){
         List<Reserva> lista = service.findAll();
@@ -38,7 +38,7 @@ public class ReservaController {
 
     }
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','CLIENTE')")
     @PutMapping(value = "/{id}")
     public ResponseEntity<Void> update(@Valid @RequestBody ReservaDTO objDto, @PathVariable Integer id){
         Reserva obj = service.fromDto(objDto);
@@ -49,7 +49,7 @@ public class ReservaController {
     }
 
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','CLIENTE')")
     @PutMapping(value = "/check/{id}")
     public ResponseEntity<Void> check(@Valid @RequestBody ReservaDTO objDto, @PathVariable Integer id){
         Reserva obj = service.fromDto(objDto);
@@ -60,7 +60,7 @@ public class ReservaController {
     }
 
 
-    @PreAuthorize("hasAnyRole('FUNCIONARIO','GERENTE')")
+    @PreAuthorize("hasAnyRole('FUNCIONARIO','CLIENTE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Integer id){
         service.delete(id);
